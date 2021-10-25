@@ -1,0 +1,17 @@
+1) ps
+
+2) sleep 30 &
+
+4) kill 31431 -> ps
+
+4) sleep 30 -> ctrl+z -> bg
+
+5) sleep 300 &
+
+6) sleep 200 -> ctrl+z / sleep 100 -> ctrl+z
+
+7) jobs -> fg %1 -> ctrl+z
+
+8) bg %3 -> jobs
+
+9) killall sleep

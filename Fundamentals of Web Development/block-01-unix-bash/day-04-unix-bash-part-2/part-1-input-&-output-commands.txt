@@ -1,0 +1,35 @@
+1) cd turma-xp-tribo-a/unix_tests/
+   pwd
+
+2) cat > skills2.txt -> 
+
+Internet
+Unix
+Bash
+
+3) cat >> skills2.txt -> cat skills2.txt
+
+4) wc -l skills2.txt
+
+5) sort < skills2.txt | head -3 > top_skills.txt
+
+6) cat > phrases2.txt -> 
+
+You can totally do this.
+Don’t tell people your plans.
+No pressure, no diamonds.
+We can do anything we want to.
+
+7) grep br phrases2.txt | wc -l
+
+8) grep -v br phrases2.txt | wc -l
+
+9) cat >> phrases2.txt -> 
+
+Brasil
+Argentina
+Uruguai
+
+10) cat phrases2.txt countries.txt > bunch_of_things.txt
+
+11) sort  bunch_of_things.txt -o bunch_of_things.txt

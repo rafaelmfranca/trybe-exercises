@@ -1,0 +1,10 @@
+1) cd turma-xp-tribo-a/unix_tests/
+   pwd
+
+2) ls -l
+
+3) chmod a+w bunch_of_things.txt
+
+4) chmod a-w bunch_of_things.txt
+
+5) chmod 644 bunch_of_things.txt -> ls -l
