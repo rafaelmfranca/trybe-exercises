@@ -1,0 +1,35 @@
+body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 65px;
+    color: orange;
+}
+
+.list-style {
+    background-color: orangered;
+}
+
+p {
+    font-weight: 600;
+    font-size: 3em;
+}
+
+ul {
+    font-style: oblique;
+    line-height: 2em;
+    text-decoration: underline;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#red {
+    background-color: red;
+}
+
+#brown {
+    background-color: brown;
+}
