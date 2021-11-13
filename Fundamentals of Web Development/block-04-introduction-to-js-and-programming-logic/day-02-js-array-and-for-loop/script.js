@@ -77,7 +77,7 @@ console.log(numbers)
 let numbers2 = [5, 9, 3, 19, 70, 8, 100, 2, 35, 27];
 let newNumbers = [];
 
-for (let index = 0; index < numbers2.length; index++)
-    index !== numbers2.length - 1 ? newNumbers.push(numbers2[index] * numbers2[index + 1]) : newNumbers.push(numbers2[index] * 2);
+for (let i = 0; i < numbers2.length; i++)
+    i !== numbers2.length - 1 ? newNumbers.push(numbers2[i] * numbers2[i + 1]) : newNumbers.push(numbers2[i] * 2);
 
 console.log(newNumbers);
