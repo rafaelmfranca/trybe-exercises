@@ -45,7 +45,7 @@ btnsContainer.appendChild(holidayBtn);
 // Exercício 3
 let clickedHoliday = false;
 
-holidayBtn.addEventListener('click', function () {
+holidayBtn.addEventListener('click', () => {
     clickedHoliday = !clickedHoliday;
     const holidays = document.querySelectorAll('.holiday');
     for (const day of holidays) clickedHoliday ? day.style.backgroundColor = 'white' : day.style.backgroundColor = 'rgb(238,238,238)';
@@ -59,7 +59,7 @@ btnsContainer.appendChild(fridayBtn);
 // Exercício 5
 let clickedFriday = false;
 
-fridayBtn.addEventListener('click', function () {
+fridayBtn.addEventListener('click', () => {
     clickedFriday = !clickedFriday;
     const friday = document.querySelectorAll('.friday');
     for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
@@ -84,11 +84,18 @@ createTask('Projeto');
 // Exercício 8
 function addTaskColor(color) {
     const task = document.createElement('div');
+    task.classList.add('task');
     task.style.backgroundColor = color;
     myTasks.appendChild(task);
 }
 
 addTaskColor('green');
 // Exercício 9
+function setTaskClass(event) {
+    this.classList.contains('selected') ? this.classList.remove('selected') : this.classList.add('selected');
+}
+
+myTasks.lastChild.addEventListener('click', setTaskClass);
+
 // Exercício 10
 // Exercício Bônus
