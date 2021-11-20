@@ -68,7 +68,21 @@ fridayBtn.addEventListener('click', function () {
     for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
 });
 
-// Exercício 6
+// Exercício 6 - I'm proud of this func
+function addEventListenerByClass(className, eventName, fn) {
+    const dayElements = document.querySelectorAll(className);
+    fn.fill(false, 0, dayElements.length);
+    dayElements.forEach((e, i) => {
+        e.addEventListener(eventName, (event) => {
+            fn[i] = !fn[i];
+            fn[i] ? event.target.style.fontSize = 25 + 'px' : event.target.style.fontSize = 20 + 'px';
+        });
+    });
+};
+
+const handleMouseUp = [];
+addEventListenerByClass('.day', 'mouseup', handleMouseUp);
+
 // Exercício 7
 // Exercício 8
 // Exercício 9
