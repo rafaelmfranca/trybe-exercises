@@ -46,16 +46,28 @@ holidayBtn.id = 'btn-holiday';
 btnsContainer.appendChild(holidayBtn);
 
 // Exercício 3
-let btnFlag = false;
+let clickedHoliday = false;
 
-holidayBtn.addEventListener('click', function (event) {
-    btnFlag = !btnFlag;
+holidayBtn.addEventListener('click', function () {
+    clickedHoliday = !clickedHoliday;
     const holidays = document.querySelectorAll('.holiday');
-    for (const day of holidays) btnFlag ? day.style.backgroundColor = 'white' : day.style.backgroundColor = 'rgb(238,238,238)';
+    for (const day of holidays) clickedHoliday ? day.style.backgroundColor = 'white' : day.style.backgroundColor = 'rgb(238,238,238)';
 });
 
 // Exercício 4
+const fridayBtn = createButton('Sexta-feira');
+fridayBtn.id = 'btn-friday';
+btnsContainer.appendChild(fridayBtn);
+
 // Exercício 5
+let clickedFriday = false;
+
+fridayBtn.addEventListener('click', function () {
+    clickedFriday = !clickedFriday;
+    const friday = document.querySelectorAll('.friday');
+    for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
+});
+
 // Exercício 6
 // Exercício 7
 // Exercício 8
