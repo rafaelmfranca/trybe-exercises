@@ -1,12 +1,10 @@
 function createDaysOfTheWeek() {
     const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
     const weekDaysList = document.querySelector('.week-days');
-
     for (let index = 0; index < weekDays.length; index += 1) {
         const days = weekDays[index];
         const dayListItem = document.createElement('li');
         dayListItem.innerHTML = days;
-
         weekDaysList.appendChild(dayListItem);
     };
 };
@@ -20,7 +18,6 @@ function createCalendarDay() {
     const holiday = [24, 25, 31];
     const friday = [4, 11, 18, 25];
     const daysUl = document.getElementById('days');
-
     for (const day of dezDaysList) {
         const dayLi = document.createElement('li');
         if (holiday.includes(day)) dayLi.classList.add('holiday');
@@ -68,7 +65,7 @@ fridayBtn.addEventListener('click', function () {
     for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
 });
 
-// Exercício 6 - I'm proud of this func
+// Exercício 6 
 function addEventListenerByClass(className, eventName, fn) {
     const dayElements = document.querySelectorAll(className);
     fn.fill(false, 0, dayElements.length);
@@ -84,7 +81,23 @@ const handleMouseUp = [];
 addEventListenerByClass('.day', 'mouseup', handleMouseUp);
 
 // Exercício 7
+function createTask(task) {
+    const taskElement = document.createElement('span');
+    taskElement.innerHTML = task;
+    myTasks.appendChild(taskElement);
+}
+
+const myTasks = document.querySelector('.my-tasks');
+createTask('Projeto');
+
 // Exercício 8
+function addTaskColor(color) {
+    const task = document.createElement('div');
+    task.style.backgroundColor = color;
+    myTasks.appendChild(task);
+}
+
+addTaskColor('green');
 // Exercício 9
 // Exercício 10
 // Exercício Bônus
