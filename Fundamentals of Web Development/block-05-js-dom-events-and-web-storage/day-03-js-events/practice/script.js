@@ -17,7 +17,6 @@ function createCalendarDay() {
     const dezDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
     const holiday = [24, 25, 31];
     const friday = [4, 11, 18, 25];
-    const daysUl = document.getElementById('days');
     for (const day of dezDaysList) {
         const dayLi = document.createElement('li');
         if (holiday.includes(day)) dayLi.classList.add('holiday');
@@ -28,6 +27,7 @@ function createCalendarDay() {
     };
 };
 
+const daysUl = document.getElementById('days');
 createCalendarDay();
 
 // Exercício 2
@@ -65,20 +65,11 @@ fridayBtn.addEventListener('click', function () {
     for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
 });
 
-// Exercício 6 
-function addEventListenerByClass(className, eventName, fn) {
-    const dayElements = document.querySelectorAll(className);
-    fn.fill(false, 0, dayElements.length);
-    dayElements.forEach((e, i) => {
-        e.addEventListener(eventName, (event) => {
-            fn[i] = !fn[i];
-            fn[i] ? event.target.style.fontSize = 25 + 'px' : event.target.style.fontSize = 20 + 'px';
-        });
-    });
-};
-
-const handleMouseUp = [];
-addEventListenerByClass('.day', 'mouseup', handleMouseUp);
+// Exercício 6
+const zoomIn = (event) => event.target.style.fontSize = 25 + 'px';
+const zoomOut = (event) => event.target.style.fontSize = 20 + 'px';
+daysUl.addEventListener('mouseover', zoomIn);
+daysUl.addEventListener('mouseout', zoomOut);
 
 // Exercício 7
 function createTask(task) {
