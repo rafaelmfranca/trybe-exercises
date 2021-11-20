@@ -76,7 +76,7 @@ function createTask(task) {
     const taskElement = document.createElement('span');
     taskElement.innerHTML = task;
     myTasks.appendChild(taskElement);
-}
+};
 
 const myTasks = document.querySelector('.my-tasks');
 createTask('Projeto');
@@ -87,15 +87,30 @@ function addTaskColor(color) {
     task.classList.add('task');
     task.style.backgroundColor = color;
     myTasks.appendChild(task);
-}
+};
 
 addTaskColor('green');
 // Exercício 9
-function setTaskClass(event) {
-    this.classList.contains('selected') ? this.classList.remove('selected') : this.classList.add('selected');
-}
+function setTaskClass() {
+    myTasks.lastChild.addEventListener('click', (event) => {
+        const e = event.target;
+        e.classList.contains('selected') ? e.classList.remove('selected') : e.classList.add('selected');
+    });
+};
 
-myTasks.lastChild.addEventListener('click', setTaskClass);
+setTaskClass();
 
 // Exercício 10
+function setDayColor() {
+    const daysLi = document.querySelectorAll('.day');
+    daysLi.forEach((day) => {
+        day.addEventListener('click', (event) => {
+            const e = event.target
+            e.style.color !== 'green' ? e.style.color = 'green' : e.style.color = 'rgb(119,119,119)';
+        });
+    });
+};
+
+setDayColor();
+
 // Exercício Bônus
