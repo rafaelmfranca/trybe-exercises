@@ -105,7 +105,7 @@ function setDayColor() {
     const daysLi = document.querySelectorAll('.day');
     daysLi.forEach((day) => {
         day.addEventListener('click', (event) => {
-            const e = event.target
+            const e = event.target;
             e.style.color !== 'green' ? e.style.color = 'green' : e.style.color = 'rgb(119,119,119)';
         });
     });
@@ -114,3 +114,23 @@ function setDayColor() {
 setDayColor();
 
 // Exercício Bônus
+function addCompToList() {
+    const btnAdd = document.querySelector('#btn-add');
+    const text = document.querySelector('#task-input');
+    const taskList = document.querySelector('.task-list');
+
+    text.addEventListener('keyup', (event) => { if (event.key === 'Enter') addComp(); });
+    btnAdd.addEventListener('click', addComp);
+
+    function addComp() {
+        if (text.value.length < 1) alert('Error!');
+        else {
+            const li = document.createElement('li');
+            li.innerHTML = text.value;
+            taskList.appendChild(li);
+            text.value = '';
+        };
+    };
+};
+
+addCompToList();
