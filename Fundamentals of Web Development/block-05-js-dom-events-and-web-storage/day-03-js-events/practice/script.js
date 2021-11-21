@@ -1,12 +1,10 @@
 function createDaysOfTheWeek() {
     const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
     const weekDaysList = document.querySelector('.week-days');
-
     for (let index = 0; index < weekDays.length; index += 1) {
         const days = weekDays[index];
         const dayListItem = document.createElement('li');
         dayListItem.innerHTML = days;
-
         weekDaysList.appendChild(dayListItem);
     };
 };
@@ -19,8 +17,6 @@ function createCalendarDay() {
     const dezDaysList = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
     const holiday = [24, 25, 31];
     const friday = [4, 11, 18, 25];
-    const daysUl = document.getElementById('days');
-
     for (const day of dezDaysList) {
         const dayLi = document.createElement('li');
         if (holiday.includes(day)) dayLi.classList.add('holiday');
@@ -31,6 +27,7 @@ function createCalendarDay() {
     };
 };
 
+const daysUl = document.getElementById('days');
 createCalendarDay();
 
 // Exercício 2
@@ -48,7 +45,7 @@ btnsContainer.appendChild(holidayBtn);
 // Exercício 3
 let clickedHoliday = false;
 
-holidayBtn.addEventListener('click', function () {
+holidayBtn.addEventListener('click', () => {
     clickedHoliday = !clickedHoliday;
     const holidays = document.querySelectorAll('.holiday');
     for (const day of holidays) clickedHoliday ? day.style.backgroundColor = 'white' : day.style.backgroundColor = 'rgb(238,238,238)';
@@ -62,29 +59,78 @@ btnsContainer.appendChild(fridayBtn);
 // Exercício 5
 let clickedFriday = false;
 
-fridayBtn.addEventListener('click', function () {
+fridayBtn.addEventListener('click', () => {
     clickedFriday = !clickedFriday;
     const friday = document.querySelectorAll('.friday');
     for (const day of friday) clickedFriday ? day.style.fontWeight = 'bold' : day.style.fontWeight = 'normal';
 });
 
-// Exercício 6 - I'm proud of this func
-function addEventListenerByClass(className, eventName, fn) {
-    const dayElements = document.querySelectorAll(className);
-    fn.fill(false, 0, dayElements.length);
-    dayElements.forEach((e, i) => {
-        e.addEventListener(eventName, (event) => {
-            fn[i] = !fn[i];
-            fn[i] ? event.target.style.fontSize = 25 + 'px' : event.target.style.fontSize = 20 + 'px';
+// Exercício 6
+const zoomIn = (event) => event.target.style.fontSize = 25 + 'px';
+const zoomOut = (event) => event.target.style.fontSize = 20 + 'px';
+daysUl.addEventListener('mouseover', zoomIn);
+daysUl.addEventListener('mouseout', zoomOut);
+
+// Exercício 7
+function createTask(task) {
+    const taskElement = document.createElement('span');
+    taskElement.innerHTML = task;
+    myTasks.appendChild(taskElement);
+};
+
+const myTasks = document.querySelector('.my-tasks');
+createTask('Projeto');
+
+// Exercício 8
+function addTaskColor(color) {
+    const task = document.createElement('div');
+    task.classList.add('task');
+    task.style.backgroundColor = color;
+    myTasks.appendChild(task);
+};
+
+addTaskColor('green');
+// Exercício 9
+function setTaskClass() {
+    myTasks.lastChild.addEventListener('click', (event) => {
+        const e = event.target;
+        e.classList.contains('selected') ? e.classList.remove('selected') : e.classList.add('selected');
+    });
+};
+
+setTaskClass();
+
+// Exercício 10
+function setDayColor() {
+    const daysLi = document.querySelectorAll('.day');
+    daysLi.forEach((day) => {
+        day.addEventListener('click', (event) => {
+            const e = event.target;
+            e.style.color !== 'green' ? e.style.color = 'green' : e.style.color = 'rgb(119,119,119)';
         });
     });
 };
 
-const handleMouseUp = [];
-addEventListenerByClass('.day', 'mouseup', handleMouseUp);
+setDayColor();
 
-// Exercício 7
-// Exercício 8
-// Exercício 9
-// Exercício 10
 // Exercício Bônus
+function addCompToList() {
+    const btnAdd = document.querySelector('#btn-add');
+    const text = document.querySelector('#task-input');
+    const taskList = document.querySelector('.task-list');
+
+    text.addEventListener('keyup', (event) => { if (event.key === 'Enter') addComp(); });
+    btnAdd.addEventListener('click', addComp);
+
+    function addComp() {
+        if (text.value.length < 1) alert('Error!');
+        else {
+            const li = document.createElement('li');
+            li.innerHTML = text.value;
+            taskList.appendChild(li);
+            text.value = '';
+        };
+    };
+};
+
+addCompToList();
