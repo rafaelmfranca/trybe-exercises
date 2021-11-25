@@ -12,22 +12,34 @@
 <body>
     <form action="#">
         <fieldset>
+            <legend>Personal data</legend>
             <label for="name">Name: </label>
-            <input type="text" id="name" name="name" placeholder="Name" maxlength="40" required>
+            <input type="text" id="name" name="name"="Name" maxlength="40" required>
             <label for="email">Email: </label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email"="Email" required>
             <label for="cpf">CPF: </label>
-            <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="11" required>
+            <input type="text" id="cpf" name="cpf"="CPF" maxlength="11" required>
             <label for="adress">Address: </label>
-            <input type="text" id="adress" name="adress" placeholder="Adress" maxlength="200" required>
+            <input type="text" id="adress" name="adress"="Adress" maxlength="200" required>
             <label for="city">City: </label>
-            <input type="text" id="city" name="city" placeholder="City" maxlength="28" required>
+            <input type="text" id="city" name="city"="City" maxlength="28" required>
             <select name="states" id="states" required></select>
             <input type="radio" id="home" name="place" value="home" required>
             <label for="home">Home</label>
             <input type="radio" id="apartment" name="place" value="apartment" required>
             <label for="apartment">Apartment</label>
             <script src="script.js"></script>
+        </fieldset>
+        <fieldset>
+            <legend>Last job data</legend>
+            <label for="resume">Curriculum resume: </label>
+            <textarea name="resume" id="resume" rows="10" cols="50" maxlength="1000" required></textarea>
+            <label for="role">Role: </label>
+            <input type="text" id="role" name="role"="Role" maxlength="40" required>
+            <label for="role-description">Role description: </label>
+            <input type="text" id="role-description" name="role-description" maxlength="500" required>
+            <label for="initial-date" name="initial-date">Initial date: </label>
+            <input type="date" id="initial-date" name="initial-date" required>
         </fieldset>
     </form>
 </body>
