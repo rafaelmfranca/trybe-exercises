@@ -1,0 +1,53 @@
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 15px;
+}
+
+/* Full-width input fields */
+textarea , input[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=radio] {
+    padding: 15px;
+}
+
+textarea:focus, input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+select , #preview , #clear {
+  display: inline-block;
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+#preview:hover , #clear:hover , select:hover {
+  opacity:1;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.buttons {
+  text-align: center;
+}
