@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <title>Forms</title>
 </head>
 
@@ -29,13 +30,11 @@
                     <label for="city">City: </label>
                     <input type="text" id="city" name="city"="City" maxlength="28" required>
                     <select name="states" id="states" required>
-                        <option value="def">Select a state: </option>
                     </select>
-                    <input type="radio" id="home" name="place" value="home" required>
+                    <input type="radio" id="home" name="place" value="home" checked required>
                     <label for="home">Home</label>
                     <input type="radio" id="apartment" name="place" value="apartment" required>
                     <label for="apartment">Apartment</label>
-                    <script src="script.js"></script>
                 </fieldset>
                 <fieldset>
                     <legend>Last job data</legend>
