@@ -1,0 +1,96 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Ubuntu';
+}
+
+body {
+    background-color: rgb(247, 247, 247);
+}
+
+.header-container {
+    background-color: #5C687C;
+    display: flex;
+}
+
+.logo-container {
+    width: 268px;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-container {
+    width: 500px;
+    display: flex;
+    order: 1;
+    flex-grow: 1;
+}
+
+.menu-container ul {
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    width: 100%;
+}
+
+.menu-container li {
+    color: white;
+    font-weight: 500;
+    font-size: 1.3rem;
+    list-style: none;
+    margin-right: 10px;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-container {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+}
+
+.movie-container h2 {
+    margin: 40px 0;
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card-container div {
+    flex-grow: 1;
+    width: 16%;
+    align-items: center;
+    background-color: #5C687C;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    margin: 10px;
+}
+
+.aside-container {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 20px;
+}
+
+.aside-container h3, h4 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.aside-container p {
+    margin: 10px 0;
+    text-align: justify;
+}
