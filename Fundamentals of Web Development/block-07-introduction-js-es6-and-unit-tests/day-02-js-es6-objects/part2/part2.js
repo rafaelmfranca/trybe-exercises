@@ -51,3 +51,8 @@ console.log(getValueByNumber(lesson1, 0));
 const verifyPair = (obj, key, value) => Object.keys(obj).includes(key) && obj[key] === value;
 console.log(verifyPair(lesson3, 'turno', 'noite'));
 console.log(verifyPair(lesson3, 'materia', 'Maria Clara'));
+
+// Bônus
+// Crie uma função para contar quantos estudantes assistiram às aulas de Matemática. Use o objeto criado no exercício 5.
+const numberOfMathStudents = (obj) => Object.keys(obj).filter((key) => obj[key].materia === 'Matemática').map((key) => obj[key].numeroEstudantes).reduce((a, b) => a + b);
+console.log(numberOfMathStudents(allLessons));
