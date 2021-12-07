@@ -17,7 +17,10 @@
   <button id='button'>Somar</button>
   <p id='result'></p>
   <script>
-    const verifyEmptyInputs = (value1, value2) => { if (!value1 || !value2) throw new Error('Empty inputs!'); }
+    const isValidInputs = (value1, value2) => {
+      if (!value1 || !value2) throw new Error('Empty inputs!');
+      if (isNaN(value1) || isNaN(value2)) throw new Error('Only numbers!');
+    }
 
     function sum() {
       const input1 = document.getElementById('value1');
@@ -25,12 +28,16 @@
       const paragraph = document.getElementById('result');
 
       try {
-        verifyEmptyInputs(input1.value, input2.value);
-        paragraph.innerHTML = `Resultado: ${+input1.value + +input2.value}`;
-      } catch (error) { paragraph.innerHTML = error.message; }
-
-      input1.value = '';
-      input2.value = '';
+        const value1 = input1.value;
+        const value2 = input2.value;
+        isValidInputs(value1, value2);
+        paragraph.innerHTML = `Resultado: ${+value1 + +value2}`;
+      } catch (error) {
+        paragraph.innerHTML = error.message;
+      } finally {
+        input1.value = '';
+        input2.value = '';
+      }
     }
     window.onload = () => {
       const button = document.getElementById('button');
