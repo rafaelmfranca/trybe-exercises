@@ -18,30 +18,56 @@ const dragon = {
   damage: undefined,
 };
 
+const battleMembers = { mage, warrior, dragon };
+
 const getRandomNumber = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const battleMembers = { mage, warrior, dragon };
-
-const dragonDamage = (dragon) => getRandomNumber(15, dragon.strength);
-const warriorDamage = (warrior) => getRandomNumber(warrior.strength, warrior.strength * warrior.weaponDmg);
-const mageTurnStats = (mage) => {
-  let initialMana = mage.mana;
+const dragonAttack = (dragon) => getRandomNumber(15, dragon.strength);
+const warriorAttack = (warrior) => getRandomNumber(warrior.strength, warrior.strength * warrior.weaponDmg);
+const mageAttack = (mage) => {
   let damage = getRandomNumber(mage.intelligence, mage.intelligence * 2);
   let manaConsumed = 15;
 
-  if (initialMana < 15) {
+  if (mage.mana < 15) {
     damage = 'Não possui mana suficiente';
     manaConsumed = 0;
   }
 
-  initialMana -= manaConsumed;
-  return { damage, manaConsumed};
+  return { damage, manaConsumed };
 };
 
-console.log(dragonDamage(dragon));
-console.log(warriorDamage(warrior));
-console.log(mageTurnStats(mage));
+const gameActions = {
+  warriorTurn: (callback) => {
+    const warriorDamage = callback(warrior);
+    warrior.damage = warriorDamage;
+    dragon.healthPoints -= warriorDamage;
+  },
+  dragonTurn: (callback) => {
+    const dragonDamage = callback(dragon);
+    dragon.damage = dragonDamage;
+    warrior.healthPoints -= dragonDamage;
+    mage.healthPoints -= dragonDamage;
+  },
+  mageTurn: (callback) => {
+    const mageDamage = callback(mage).damage;
+    const manaSpent = callback(mage).manaConsumed;
+    mage.damage = mageDamage;
+    mage.mana -= manaSpent;
+    dragon.healthPoints -= mageDamage;
+  },
+  battleTurnStats: () => battleMembers
+};
+
+const turn = () => {
+  gameActions.warriorTurn(warriorAttack);
+  gameActions.mageTurn(mageAttack);
+  gameActions.dragonTurn(dragonAttack);
+  console.log(gameActions.battleTurnStats())
+}
+
+turn();
+
