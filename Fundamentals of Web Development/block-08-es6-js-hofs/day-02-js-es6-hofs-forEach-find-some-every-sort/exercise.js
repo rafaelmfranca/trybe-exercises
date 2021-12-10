@@ -68,6 +68,8 @@ console.log(authorBornIn1947());
 const smallerName = () => books.sort((a, b) => a.name.length - b.name.length)[0].name;
 console.log(smallerName());
 // 3 - Encontre o primeiro livro cujo nome possui 26 caracteres.
+const getNamedBook = () => books.find((book) => book.name.length === 26);
+console.log(getNamedBook());
 // 4 - Ordene os livros por data de lançamento em ordem decrescente.
 // 5 - Faça uma função que retorne true , se todas as pessoas autoras nasceram no século XX, ou false , caso contrário.
 // 6 - Faça uma função que retorne true , se algum livro foi lançado na década de 80, e false , caso contrário.
