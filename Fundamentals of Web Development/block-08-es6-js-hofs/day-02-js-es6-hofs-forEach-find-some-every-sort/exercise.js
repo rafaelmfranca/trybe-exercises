@@ -74,5 +74,7 @@ console.log(getNamedBook());
 const booksOrderedByReleaseYearDesc = () => books.sort((a, b) => b.releaseYear - a.releaseYear);
 console.log(booksOrderedByReleaseYearDesc());
 // 5 - Faça uma função que retorne true , se todas as pessoas autoras nasceram no século XX, ou false , caso contrário.
+const everyoneWasBornOnSecXX = () => books.every((book) => book.author.birthYear >= 1901 && book.author.birthYear <= 2000);
+console.log(everyoneWasBornOnSecXX());
 // 6 - Faça uma função que retorne true , se algum livro foi lançado na década de 80, e false , caso contrário.
 // 7 - Faça uma função que retorne true , caso nenhum author tenha nascido no mesmo ano, e false , caso contrário.
