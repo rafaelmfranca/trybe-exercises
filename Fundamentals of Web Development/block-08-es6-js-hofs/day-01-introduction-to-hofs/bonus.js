@@ -53,11 +53,10 @@ const gameActions = {
     mage.healthPoints -= dragonDamage;
   },
   mageTurn: (callback) => {
-    const mageDamage = callback(mage).damage;
-    const manaSpent = callback(mage).manaConsumed;
-    mage.damage = mageDamage;
-    mage.mana -= manaSpent;
-    dragon.healthPoints -= mageDamage;
+    const { damage, manaConsumed } = callback(mage);
+    mage.damage = damage;
+    mage.mana -= manaConsumed;
+    dragon.healthPoints -= damage;
   },
   battleTurnStats: () => battleMembers
 };
@@ -69,5 +68,6 @@ const turn = () => {
   console.log(gameActions.battleTurnStats())
 }
 
+turn();
 turn();
 
