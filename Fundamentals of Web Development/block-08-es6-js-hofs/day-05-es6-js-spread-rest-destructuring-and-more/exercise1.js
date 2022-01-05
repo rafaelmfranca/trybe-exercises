@@ -1,6 +1,6 @@
 const assert = require('assert');
-// 1 - Dado o código abaixo, complete-o de forma que seja impressa a área dos 3 retângulos. O código deve retornar em sequência 2 , 15 e 54 .
 
+// 1 - Dado o código abaixo, complete-o de forma que seja impressa a área dos 3 retângulos. O código deve retornar em sequência 2 , 15 e 54 .
 const rectangleArea = (width, height) => width * height;
 
 const rectangle1 = [1, 2];
