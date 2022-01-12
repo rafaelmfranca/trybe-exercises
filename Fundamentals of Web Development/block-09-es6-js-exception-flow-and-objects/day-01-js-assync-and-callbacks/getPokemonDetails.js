@@ -33,7 +33,7 @@ function getPokemonDetails(filter, callback) {
 
 getPokemonDetails(
   ({ name }) => name === 'Bulbasaur',
-  (error, message) => (error ? console.log(error) : console.log(message))
+  (error, message) => (error ? error : message)
 );
 
 module.exports = {
