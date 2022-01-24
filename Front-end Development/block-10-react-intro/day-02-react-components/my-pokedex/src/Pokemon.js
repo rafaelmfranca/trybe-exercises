@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Pokemon.css';
 
 class Pokemon extends Component {
   render() {
@@ -11,7 +12,8 @@ class Pokemon extends Component {
         <p>{name}</p>
         <p>{type}</p>
         <p>
-          {value} {measurementUnit}
+          {value}
+          {measurementUnit}
         </p>
         <img src={image} alt={name} />
       </section>

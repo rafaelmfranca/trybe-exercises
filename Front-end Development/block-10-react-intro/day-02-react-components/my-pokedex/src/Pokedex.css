@@ -1,0 +1,13 @@
+.pokedex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 70vw;
+  height: auto;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
