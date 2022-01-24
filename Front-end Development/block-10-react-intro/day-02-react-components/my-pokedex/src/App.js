@@ -1,9 +1,7 @@
 import './App.css';
 import pokemons from './data';
-import Pokemon from './Pokemon';
+import Pokedex from './Pokedex';
 
-const App = () => {
-  return pokemons.map((pokemon) => <Pokemon key={pokemon.id} data={pokemon} />);
-};
+const App = () => <Pokedex data={pokemons} />;
 
 export default App;
