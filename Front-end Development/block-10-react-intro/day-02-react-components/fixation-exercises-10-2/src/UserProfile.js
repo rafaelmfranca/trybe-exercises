@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Image from './Image';
-
-export default class UserProfile extends Component {
+import PropTypes from 'prop-types';
+class UserProfile extends Component {
   render() {
     const { name, email, avatar } = this.props.user;
 
@@ -14,3 +14,13 @@ export default class UserProfile extends Component {
     );
   }
 }
+
+UserProfile.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.number,
+    email: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+}.isRequired;
+
+export default UserProfile;
