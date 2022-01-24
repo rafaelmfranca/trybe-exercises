@@ -100,6 +100,41 @@ const pokemons = [
     moreInfo:
       'https://bulbapedia.bulbagarden.net/wiki/Dragonair_(Pok%C3%A9mon)',
   },
+  {
+    id: 1,
+    name: 'Bulbasaur',
+    type: 'Grass/Poison',
+    averageWeight: {
+      value: 6.9,
+      measurementUnit: 'kg',
+    },
+    image: 'https://archives.bulbagarden.net/media/upload/7/76/Spr_5b_001.png',
+    moreInfo:
+      'https://bulbapedia.bulbagarden.net/wiki/Bulbasaur_(Pok%C3%A9mon)',
+  },
+  {
+    id: 7,
+    name: 'Squirtle',
+    type: 'Water',
+    averageWeight: {
+      value: 9.0,
+      measurementUnit: 'kg',
+    },
+    image:
+      'https://archives.bulbagarden.net/media/upload/3/30/Spr_5b_007_s.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Squirtle_(Pok%C3%A9mon)',
+  },
+  {
+    id: 35,
+    name: 'Clefairy',
+    type: 'Fairy',
+    averageWeight: {
+      value: 7.5,
+      measurementUnit: 'kg',
+    },
+    image: 'https://archives.bulbagarden.net/media/upload/7/76/Spr_5b_035.png',
+    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Clefairy_(Pok%C3%A9mon)',
+  },
 ];
 
 export default pokemons;

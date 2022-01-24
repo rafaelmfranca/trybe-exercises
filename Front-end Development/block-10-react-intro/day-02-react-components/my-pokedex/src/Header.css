@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'pokemon';
+  src: url('../font/PokemonSolid.ttf');
+}
+
+.header {
+  text-align: center;
+  line-height: 100px;
+  width: 100%;
+  height: 100px;
+  color: gray;
+  font-family: pokemon;
+  font-size: 1.2em;
+}
