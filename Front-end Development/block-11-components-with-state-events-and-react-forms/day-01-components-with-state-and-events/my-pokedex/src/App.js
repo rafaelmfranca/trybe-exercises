@@ -5,10 +5,10 @@ import Header from './Header';
 
 const App = () => {
   return (
-    <>
+    <main>
       <Header />
       <Pokedex data={pokemons} />
-    </>
+    </main>
   );
 };
 

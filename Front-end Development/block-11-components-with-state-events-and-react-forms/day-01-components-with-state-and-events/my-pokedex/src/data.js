@@ -103,7 +103,7 @@ const pokemons = [
   {
     id: 1,
     name: 'Bulbasaur',
-    type: 'Grass/Poison',
+    type: 'Grass',
     averageWeight: {
       value: 6.9,
       measurementUnit: 'kg',
