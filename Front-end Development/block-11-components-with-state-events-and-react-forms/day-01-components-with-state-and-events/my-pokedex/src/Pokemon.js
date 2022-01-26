@@ -3,22 +3,16 @@ import PropTypes from 'prop-types';
 import './Pokemon.css';
 
 class Pokemon extends Component {
-  constructor() {
-    super();
-    this.redirectToBulbapedia = this.redirectToBulbapedia.bind(this);
-  }
-
-  redirectToBulbapedia() {
-    const { moreInfo } = this.props.data;
-    window.open(moreInfo, '_blank');
+  redirectToBulbapedia(url) {
+    window.open(url, '_blank');
   }
 
   render() {
-    const { name, type, averageWeight, image } = this.props.data;
+    const { name, type, averageWeight, image, moreInfo } = this.props.data;
     const { value, measurementUnit } = averageWeight;
 
     return (
-      <section className="pokemon" onClick={this.redirectToBulbapedia}>
+      <section className="pokemon" onClick={() => this.redirectToBulbapedia(moreInfo)}>
         <p>{name}</p>
         <p>{type}</p>
         <p>
