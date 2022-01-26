@@ -4,7 +4,6 @@
   flex-wrap: wrap;
   gap: 10px;
   width: max-content;
-  height: auto;
   margin: 0 auto;
   padding: 10px;
   background-color: whitesmoke;
@@ -12,7 +11,6 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.next-pokemon {
-  margin-top: 10px;
+div {
   text-align: center;
 }

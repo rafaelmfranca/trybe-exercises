@@ -9,9 +9,24 @@ export default class Pokedex extends Component {
 
     this.state = {
       stateIndex: 0,
+      activeFilter: 'all',
     };
 
     this.nextPokemon = this.nextPokemon.bind(this);
+    this.filterPokemons = this.filterPokemons.bind(this);
+  }
+
+  changeActiveFilter(newFilter) {
+    this.setState({ stateIndex: 0, activeFilter: newFilter });
+  }
+
+  filterPokemons() {
+    const pokemons = this.props.data;
+    const { activeFilter } = this.state;
+
+    return activeFilter === 'all'
+      ? pokemons
+      : pokemons.filter(({ type }) => type === activeFilter);
   }
 
   nextPokemon(numberOfPokemons) {
@@ -20,18 +35,42 @@ export default class Pokedex extends Component {
     }));
   }
 
-  render() {
+  getPokemonTypes() {
     const pokemons = this.props.data;
+    const types = pokemons.map(({ type }) => type);
+    return [...new Set(types)]; // Removing duplicates
+  }
+
+  render() {
     const { stateIndex } = this.state;
-    const currPokemon = pokemons[stateIndex];
+    const filteredPokemons = this.filterPokemons();
+    const pokemonTypes = this.getPokemonTypes();
+    const currPokemon = filteredPokemons[stateIndex];
 
     return (
       <section>
         <div className="pokedex">
           <Pokemon key={currPokemon.id} data={currPokemon} />
         </div>
-        <div className="next-pokemon">
-          <Button onClick={() => this.nextPokemon(pokemons.length)} />
+        <div>
+          <Button
+            key="all"
+            className="All"
+            onClick={() => this.changeActiveFilter('all')}
+          />
+          {pokemonTypes.map((type) => (
+            <Button
+              key={type}
+              className={type}
+              onClick={() => this.changeActiveFilter(type)}
+            />
+          ))}
+        </div>
+        <div>
+          <Button
+            className="Next Pokemon"
+            onClick={() => this.nextPokemon(filteredPokemons.length)}
+          />
         </div>
       </section>
     );
