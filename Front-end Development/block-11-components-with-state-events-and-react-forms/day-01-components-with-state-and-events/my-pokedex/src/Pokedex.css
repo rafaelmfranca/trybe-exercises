@@ -1,8 +1,6 @@
 .pokedex {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
   width: max-content;
   margin: 0 auto;
   padding: 10px;

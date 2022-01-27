@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Pokemon.css';
 
-class Pokemon extends Component {
-  redirectToBulbapedia(url) {
-    window.open(url, '_blank');
-  }
+const Pokemon = ({ data: { name, type, averageWeight, image, moreInfo } }) => {
+  const { value, measurementUnit } = averageWeight;
 
-  render() {
-    const { name, type, averageWeight, image, moreInfo } = this.props.data;
-    const { value, measurementUnit } = averageWeight;
+  const redirectToBulbapedia = (url) => window.open(url, '_blank');
 
-    return (
-      <section className="pokemon" onClick={() => this.redirectToBulbapedia(moreInfo)}>
-        <p>{name}</p>
-        <p>{type}</p>
-        <p>
-          {value}
-          {measurementUnit}
-        </p>
-        <img src={image} alt={name} />
-      </section>
-    );
-  }
-}
+  return (
+    <section className="pokemon" onClick={() => redirectToBulbapedia(moreInfo)}>
+      <p>{name}</p>
+      <p>{type}</p>
+      <p>
+        {value}
+        {measurementUnit}
+      </p>
+      <img src={image} alt={name} />
+    </section>
+  );
+};
 
 Pokemon.propTypes = {
   data: PropTypes.shape({

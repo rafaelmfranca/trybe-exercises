@@ -11,9 +11,6 @@ export default class Pokedex extends Component {
       stateIndex: 0,
       activeFilter: 'all',
     };
-
-    this.nextPokemon = this.nextPokemon.bind(this);
-    this.filterPokemons = this.filterPokemons.bind(this);
   }
 
   changeActiveFilter(newFilter) {
@@ -38,7 +35,7 @@ export default class Pokedex extends Component {
   getPokemonTypes() {
     const pokemons = this.props.data;
     const types = pokemons.map(({ type }) => type);
-    return [...new Set(types)]; // Removing duplicates
+    return [...new Set(types)];
   }
 
   render() {
@@ -70,6 +67,7 @@ export default class Pokedex extends Component {
           <Button
             className="Next Pokemon"
             onClick={() => this.nextPokemon(filteredPokemons.length)}
+            disabled={filteredPokemons.length <= 1}
           />
         </div>
       </section>
