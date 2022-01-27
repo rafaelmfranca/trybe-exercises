@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import InputName from './InputName';
+import InputEmail from './InputEmail';
+import SelectAge from './SelectAge';
+import TextAreaAnecdote from './TextAreaAnecdote';
+import CheckboxTerms from './CheckboxTerms';
 import '../styles/Form.css';
-
 export default class Form extends Component {
   constructor() {
     super();
@@ -21,6 +25,7 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state);
     this.setState(this.initialState);
   }
 
@@ -43,65 +48,14 @@ export default class Form extends Component {
         <form className="Form" onSubmit={this.handleSubmit}>
           <fieldset>
             <legend>Informações pessoais</legend>
-            <label htmlFor="name">
-              Nome:
-              <input
-                id="name"
-                name="name"
-                type="text"
-                onChange={this.handleChange}
-                value={name}
-              />
-            </label>
-
-            <label htmlFor="email">
-              Email:
-              <input
-                id="email"
-                name="email"
-                type="email"
-                onChange={this.handleChange}
-                value={email}
-              />
-            </label>
-
-            <label htmlFor="age">
-              Idade:
-              <select
-                id="age"
-                name="age"
-                onChange={this.handleChange}
-                value={age}
-              >
-                <option value="">Selecione</option>
-                <option value="adult">Maior que 18</option>
-                <option value="underage">Menor que 18</option>
-              </select>
-            </label>
+            <InputName value={name} onChange={this.handleChange} />
+            <InputEmail value={email} onChange={this.handleChange} />
+            <SelectAge value={age} onChange={this.handleChange} />
           </fieldset>
-
           <fieldset>
             <legend>Texto e arquivos</legend>
-            <label htmlFor="anecdote">
-              Anedota:
-              <textarea
-                id="anecdote"
-                name="anecdote"
-                onChange={this.handleChange}
-                value={anecdote}
-              />
-            </label>
-
-            <label htmlFor="terms">
-              <input
-                id="terms"
-                type="checkbox"
-                name="terms"
-                onChange={this.handleChange}
-                checked={terms}
-              />
-              Concordo com termos e acordos
-            </label>
+            <TextAreaAnecdote value={anecdote} onChange={this.handleChange} />
+            <CheckboxTerms value={terms} onChange={this.handleChange} />
             <label>
               Upload file:
               <input type="file" />
