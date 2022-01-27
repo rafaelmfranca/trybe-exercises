@@ -18,14 +18,29 @@ export default class Form extends Component {
       age: '',
       anecdote: '',
       terms: false,
+      errors: true,
     };
 
     this.state = this.initialState;
   }
 
+  handleErrors() {
+    const { name, email, age, anecdote, terms } = this.state;
+    const errorCases = [
+      !name.length,
+      !email.match(/^\S+@\S+$/i),
+      !age.length,
+      !anecdote.length,
+      !terms,
+    ];
+
+    const filledForm = errorCases.every((error) => error !== true);
+
+    this.setState({ errors: !filledForm });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     this.setState(this.initialState);
   }
 
@@ -33,13 +48,18 @@ export default class Form extends Component {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    this.setState({
-      [name]: value,
-    });
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        this.handleErrors();
+      }
+    );
   }
 
   render() {
-    const { name, email, age, anecdote, terms } = this.state;
+    const { name, email, age, anecdote, terms, errors } = this.state;
     return (
       <div>
         <h1>
@@ -63,6 +83,11 @@ export default class Form extends Component {
           </fieldset>
           <button type="submit">Submit</button>
         </form>
+        {errors ? (
+          <span style={{ color: 'red' }}>Preencha todos os campos</span>
+        ) : (
+          <span style={{ color: 'green' }}>Todos campos foram preenchidos</span>
+        )}
       </div>
     );
   }
