@@ -5,7 +5,7 @@ const About = () => {
   return (
     <main>
       <Header />
-      <h1>About pokédex</h1>
+      <h2>About pokédex</h2>
       <p>
         The Pokédex is a handheld electronic encyclopedia device; one which is
         capable of recording and retaining information of the various Pokémon of
