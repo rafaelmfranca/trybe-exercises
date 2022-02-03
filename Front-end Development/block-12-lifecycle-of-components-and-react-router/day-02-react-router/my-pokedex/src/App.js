@@ -2,7 +2,7 @@ import './App.css';
 import pokemons from './data';
 import Pokedex from './Pokedex';
 import ShowInfo from './PokemonDetails';
-import Header from './Header';
+import About from './About';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -10,24 +10,11 @@ const App = () => {
     <Router>
       <Switch>
         <Route
-          exact
-          path="/"
-          render={() => (
-            <main>
-              <Header />
-              <Pokedex data={pokemons} />
-            </main>
-          )}
-        />
-        <Route
           path="/pokemon/:id"
-          render={({ match }) => (
-            <main>
-              <Header />
-              <ShowInfo {...match} pokemons={pokemons} />
-            </main>
-          )}
+          render={({ match }) => <ShowInfo {...match} pokemons={pokemons} />}
         />
+        <Route path="/about" component={About} />
+        <Route exact path="/" render={() => <Pokedex data={pokemons} />} />
       </Switch>
     </Router>
   );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Pokemon from './Pokemon';
 import Button from './Button';
+import Header from './Header';
 import './Pokedex.css';
 
 export default class Pokedex extends Component {
@@ -45,7 +46,8 @@ export default class Pokedex extends Component {
     const currPokemon = filteredPokemons[stateIndex];
 
     return (
-      <section>
+      <main>
+        <Header />
         <div className="pokedex">
           <Pokemon key={currPokemon.id} data={currPokemon} needInfo />
         </div>
@@ -70,7 +72,7 @@ export default class Pokedex extends Component {
             disabled={filteredPokemons.length <= 1}
           />
         </div>
-      </section>
+      </main>
     );
   }
 }

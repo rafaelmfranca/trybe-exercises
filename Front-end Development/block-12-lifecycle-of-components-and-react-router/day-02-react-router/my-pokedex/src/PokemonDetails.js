@@ -1,5 +1,6 @@
 import React from 'react';
 import Pokemon from './Pokemon';
+import Header from './Header';
 
 const PokemonDetails = ({ pokemons, params: { id: paramId } }) => {
   const pokemon = pokemons.find(({ id }) => id === Number(paramId));
@@ -12,24 +13,27 @@ const PokemonDetails = ({ pokemons, params: { id: paramId } }) => {
   } = pokemon;
 
   return (
-    <div key={paramId}>
-      <div className="pokedex">
-        <Pokemon data={pokemon} />
-      </div>
-      <p>{name}</p>
-      <p>{type}</p>
-      <p>
-        {value}
-        {measurementUnit}
-      </p>
-      <p>{summary}</p>
-      {foundAt.map(({ location, map }, index) => (
-        <div key={index}>
-          <p>{location}</p>
-          <img src={map} alt={location} />
+    <main>
+      <Header />
+      <div key={paramId}>
+        <div className="pokedex">
+          <Pokemon data={pokemon} />
         </div>
-      ))}
-    </div>
+        <p>{name}</p>
+        <p>{type}</p>
+        <p>
+          {value}
+          {measurementUnit}
+        </p>
+        <p>{summary}</p>
+        {foundAt.map(({ location, map }, index) => (
+          <div key={index}>
+            <p>{location}</p>
+            <img src={map} alt={location} />
+          </div>
+        ))}
+      </div>
+    </main>
   );
 };
 
