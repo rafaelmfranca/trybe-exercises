@@ -21,7 +21,12 @@ const App = () => {
         />
         <Route
           path="/pokemon/:id"
-          render={({ match }) => <ShowInfo {...match} pokemons={pokemons} />}
+          render={({ match }) => (
+            <main>
+              <Header />
+              <ShowInfo {...match} pokemons={pokemons} />
+            </main>
+          )}
         />
       </Switch>
     </Router>

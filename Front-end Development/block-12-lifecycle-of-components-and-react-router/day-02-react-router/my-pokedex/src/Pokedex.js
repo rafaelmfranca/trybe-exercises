@@ -47,7 +47,7 @@ export default class Pokedex extends Component {
     return (
       <section>
         <div className="pokedex">
-          <Pokemon key={currPokemon.id} data={currPokemon} />
+          <Pokemon key={currPokemon.id} data={currPokemon} needInfo />
         </div>
         <div>
           <Button
