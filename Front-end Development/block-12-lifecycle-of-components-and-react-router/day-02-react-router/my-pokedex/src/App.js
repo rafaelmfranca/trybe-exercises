@@ -1,6 +1,7 @@
 import './App.css';
 import pokemons from './data';
 import Pokedex from './Pokedex';
+import ShowInfo from './PokemonDetails';
 import Header from './Header';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -17,6 +18,10 @@ const App = () => {
               <Pokedex data={pokemons} />
             </main>
           )}
+        />
+        <Route
+          path="/pokemon/:id"
+          render={({ match }) => <ShowInfo {...match} pokemons={pokemons} />}
         />
       </Switch>
     </Router>

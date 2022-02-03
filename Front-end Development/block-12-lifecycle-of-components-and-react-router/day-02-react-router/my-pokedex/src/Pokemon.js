@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Pokemon.css';
+import { Link } from 'react-router-dom';
 
-const Pokemon = ({ data: { name, type, averageWeight, image, moreInfo } }) => {
+const Pokemon = ({ data: { id, name, type, averageWeight, image } }) => {
   const { value, measurementUnit } = averageWeight;
 
-  const redirectToBulbapedia = (url) => window.open(url, '_blank');
-
   return (
-    <section className="pokemon" onClick={() => redirectToBulbapedia(moreInfo)}>
+    <section className="pokemon">
       <p>{name}</p>
       <p>{type}</p>
       <p>
@@ -16,6 +15,7 @@ const Pokemon = ({ data: { name, type, averageWeight, image, moreInfo } }) => {
         {measurementUnit}
       </p>
       <img src={image} alt={name} />
+      <Link to={`pokemon/${id}`}>More info</Link>
     </section>
   );
 };
@@ -25,11 +25,10 @@ Pokemon.propTypes = {
     name: PropTypes.string,
     type: PropTypes.string,
     averageWeight: PropTypes.shape({
-      value: PropTypes.number,
+      value: PropTypes.string,
       measurementUnit: PropTypes.string,
     }),
     image: PropTypes.string,
-    moreInfo: PropTypes.string,
   }).isRequired,
 };
 
