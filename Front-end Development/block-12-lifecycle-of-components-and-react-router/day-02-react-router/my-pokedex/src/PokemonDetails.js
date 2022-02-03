@@ -20,7 +20,10 @@ const PokemonDetails = ({ pokemons, params: { id: paramId } }) => {
       </p>
       <p>{summary}</p>
       {foundAt.map(({ location, map }, index) => (
-        <p key={index}>{`${location}, ${map} `}</p>
+        <div key={index}>
+          <p>{location}</p>
+          <img src={map} alt={location} />
+        </div>
       ))}
     </div>
   );
