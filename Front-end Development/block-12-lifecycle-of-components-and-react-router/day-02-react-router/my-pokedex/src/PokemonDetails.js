@@ -32,6 +32,10 @@ const PokemonDetails = ({ pokemons, params: { id: paramId } }) => {
             <img src={map} alt={location} />
           </div>
         ))}
+        <label htmlFor="">
+          {`Favorito `}
+          <input type="checkbox" name="" id="" />
+        </label>
       </div>
     </main>
   );

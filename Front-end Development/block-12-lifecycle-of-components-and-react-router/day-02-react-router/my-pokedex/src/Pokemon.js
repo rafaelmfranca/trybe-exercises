@@ -10,6 +10,7 @@ const Pokemon = ({
 
   return (
     <section className="pokemon">
+      <i className="fas fa-medal"></i>
       <p>{name}</p>
       <p>{type}</p>
       <p>
