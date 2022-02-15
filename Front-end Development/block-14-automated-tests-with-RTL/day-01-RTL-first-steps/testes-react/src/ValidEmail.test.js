@@ -18,20 +18,20 @@ test('Testando um componente, caso o email seja inválido.', () => {
 
 test('Testando se o componente não aparece caso o campo email esteja vazio.first', () => {
   render(<ValidEmail email="" />);
-  const isValidEmail = screen.queryByTestId('id-is-email-valid');
-  expect(isValidEmail).not.toBeInTheDocument();
+  const isValidText = screen.queryByTestId('id-is-email-valid');
+  expect(isValidText).not.toBeInTheDocument();
 });
 
 test('Testando se o componente possui texto verde ao ser digitado um email válido.', () => {
   const EMAIL_USER = 'email@email.com';
   render(<ValidEmail email={EMAIL_USER} />);
-  const isValidEmail = screen.getByTestId('id-is-email-valid');
-  expect(isValidEmail).toHaveAttribute('style', 'color: green;');
+  const isValidText = screen.getByTestId('id-is-email-valid');
+  expect(isValidText).toHaveAttribute('style', 'color: green;');
 });
 
 test('Testando se o componente possui texto vermelho ao ser digitado um email inválido.', () => {
   const EMAIL_USER = 'emailerrado';
   render(<ValidEmail email={EMAIL_USER} />);
-  const isValidEmail = screen.getByTestId('id-is-email-valid');
-  expect(isValidEmail).toHaveAttribute('style', 'color: red;');
+  const isValidText = screen.getByTestId('id-is-email-valid');
+  expect(isValidText).toHaveAttribute('style', 'color: red;');
 });
