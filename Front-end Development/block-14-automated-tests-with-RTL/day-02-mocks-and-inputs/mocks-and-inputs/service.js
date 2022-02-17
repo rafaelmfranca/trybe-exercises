@@ -14,9 +14,21 @@ function concatStrings(str1, str2) {
   return str1.concat(str2);
 }
 
+async function fetchDogPictures() {
+  try {
+    const url = 'https://dog.ceo/api/breeds/image/random';
+    const response = await fetch(url);
+    const responseJSON = await response.json();
+    return responseJSON;
+  } catch (err) {
+    return err;
+  }
+}
+
 module.exports = {
   generateRandomNumber,
   stringToUpperCase,
   firstLetterOfString,
   concatStrings,
+  fetchDogPictures,
 };

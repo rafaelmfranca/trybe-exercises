@@ -1,6 +1,6 @@
 const services = require('./service');
 
-describe('Testing generateRandomNumber func', () => {
+describe('Testing funcs', () => {
   it('exercise 1 ', () => {
     let { generateRandomNumber } = services;
     generateRandomNumber = jest.fn().mockReturnValue(10);
@@ -90,5 +90,28 @@ describe('Testing generateRandomNumber func', () => {
 
     services.concatStrings.mockRestore();
     expect(services.concatStrings('string1', 'string2')).toBe('string1string2');
+  });
+});
+
+describe('Testing fetchDogPictures', () => {
+  let { fetchDogPictures } = services;
+  fetchDogPictures = jest.fn();
+  afterEach(fetchDogPictures.mockReset);
+
+  it('resolve', async () => {
+    fetchDogPictures.mockResolvedValue('success');
+
+    fetchDogPictures();
+    expect(fetchDogPictures).toHaveBeenCalled();
+    expect(fetchDogPictures).toHaveBeenCalledTimes(1);
+    await expect(fetchDogPictures()).resolves.toBe('success');
+    expect(fetchDogPictures).toHaveBeenCalledTimes(2);
+  });
+
+  it('reject', async () => {
+    fetchDogPictures.mockRejectedValue('failed');
+
+    await expect(fetchDogPictures()).rejects.toBe('failed');
+    expect(fetchDogPictures).toHaveBeenCalledTimes(1);
   });
 });
