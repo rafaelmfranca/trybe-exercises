@@ -26,7 +26,7 @@ describe('Testing generateRandomNumber func', () => {
   });
 
   it('exercise 3 ', () => {
-    // Creating mock and replacing implementation to be a division
+    // Creating mock and replacing implementation to be a multiplication
     const mockMultiplication = jest
       .spyOn(services, 'generateRandomNumber')
       .mockImplementation((a, b, c) => a * b * c);
@@ -39,5 +39,56 @@ describe('Testing generateRandomNumber func', () => {
 
     services.generateRandomNumber.mockRestore();
     expect(services.generateRandomNumber()).not.toBeNull();
+  });
+
+  it('exercise 4 - A', () => {
+    const mockToLowerCase = jest
+      .spyOn(services, 'stringToUpperCase')
+      .mockImplementation((str) => str.toLowerCase());
+
+    services.stringToUpperCase('LOWERCASE');
+    expect(mockToLowerCase).toHaveBeenCalledTimes(1);
+    expect(mockToLowerCase('UPPERCASE')).toBe('uppercase');
+    expect(mockToLowerCase).toHaveBeenCalledTimes(2);
+    expect(mockToLowerCase).toHaveBeenCalledWith('UPPERCASE');
+
+    services.stringToUpperCase.mockRestore();
+    expect(services.stringToUpperCase('uppercase')).toBe('UPPERCASE');
+  });
+
+  it('exercise 4 - B', () => {
+    const mockLastLetterOfString = jest
+      .spyOn(services, 'firstLetterOfString')
+      .mockImplementation((str) => str.charAt(str.length - 1));
+
+    services.firstLetterOfString('string');
+    expect(mockLastLetterOfString).toHaveBeenCalledTimes(1);
+    expect(mockLastLetterOfString('string')).toBe('g');
+    expect(mockLastLetterOfString).toHaveBeenCalledTimes(2);
+    expect(mockLastLetterOfString).toHaveBeenCalledWith('string');
+
+    services.firstLetterOfString.mockRestore();
+    expect(services.firstLetterOfString('string')).toBe('s');
+  });
+
+  it('exercise 4 - C', () => {
+    const mockConcatStrings = jest
+      .spyOn(services, 'concatStrings')
+      .mockImplementation((str1, str2, str3) => str1.concat(str2, str3));
+
+    services.concatStrings('string');
+    expect(mockConcatStrings).toHaveBeenCalledTimes(1);
+    expect(mockConcatStrings('string1', 'string2', 'string3')).toBe(
+      'string1string2string3'
+    );
+    expect(mockConcatStrings).toHaveBeenCalledTimes(2);
+    expect(mockConcatStrings).toHaveBeenCalledWith(
+      'string1',
+      'string2',
+      'string3'
+    );
+
+    services.concatStrings.mockRestore();
+    expect(services.concatStrings('string1', 'string2')).toBe('string1string2');
   });
 });

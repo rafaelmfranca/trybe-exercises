@@ -2,8 +2,21 @@ function generateRandomNumber() {
   return Math.floor(Math.random() * 100);
 }
 
-// function division(a, b) {
-//   return a / b;
-// }
+function stringToUpperCase(str) {
+  return str.toUpperCase();
+}
 
-module.exports = { generateRandomNumber };
+function firstLetterOfString(str) {
+  return str.charAt(0);
+}
+
+function concatStrings(str1, str2) {
+  return str1.concat(str2);
+}
+
+module.exports = {
+  generateRandomNumber,
+  stringToUpperCase,
+  firstLetterOfString,
+  concatStrings,
+};
