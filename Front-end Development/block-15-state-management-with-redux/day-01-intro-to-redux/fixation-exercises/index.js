@@ -1,6 +1,6 @@
 const Redux = require('redux');
 
-const signIn = (email, password) => ({
+const signIn = (email) => ({
   type: 'LOGIN',
   email,
 });
