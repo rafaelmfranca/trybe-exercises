@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const ReisterLink = () => <Link to="/register">Register page</Link>;
+const RegisterLink = () => <Link to="/register">Register page</Link>;
 class Customers extends Component {
   render() {
     const { loggedUser, customersList } = this.props;
@@ -22,13 +22,13 @@ class Customers extends Component {
                 </li>
               ))}
             </ul>
-            <ReisterLink />
+            <RegisterLink />
           </>
         )}
         {userIsLoggedIn && !listIsFilled && (
           <>
             <h1>Nenhum cliente cadastrado</h1>
-            <ReisterLink />
+            <RegisterLink />
           </>
         )}
         {!userIsLoggedIn && <h1>Login não efetuado</h1>}
