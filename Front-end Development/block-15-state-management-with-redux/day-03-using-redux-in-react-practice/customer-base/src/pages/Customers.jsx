@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
+import { deleteRegister } from '../redux/actions/action';
 
 const RegisterLink = () => <Link to="/register">Register page</Link>;
 class Customers extends Component {
@@ -23,6 +24,14 @@ class Customers extends Component {
     this.setState({ customers: orderedCustomers });
   };
 
+  deleteRegister = (register) => {
+    const { dispatch } = this.props;
+    dispatch(deleteRegister(register));
+    this.setState(({ customers: prevCustomers }) => ({
+      customers: prevCustomers.filter((customer) => customer !== register),
+    }));
+  };
+
   render() {
     const { loggedUser } = this.props;
     const { customers } = this.state;
@@ -33,11 +42,16 @@ class Customers extends Component {
         {userIsLoggedIn && listIsFilled && (
           <>
             <ul>
-              {customers.map(({ name, age, email }) => (
-                <li key={email}>
-                  <p>{name}</p>
-                  <p>{age}</p>
-                  <p>{email}</p>
+              {customers.map((customer) => (
+                <li key={customer.email}>
+                  <p>{customer.name}</p>
+                  <p>{customer.age}</p>
+                  <p>{customer.email}</p>
+                  <Button
+                    type="button"
+                    label="X"
+                    onClick={() => this.deleteRegister(customer)}
+                  />
                 </li>
               ))}
             </ul>
