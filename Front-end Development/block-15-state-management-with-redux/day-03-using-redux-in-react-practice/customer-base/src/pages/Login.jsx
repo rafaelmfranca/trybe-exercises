@@ -14,10 +14,19 @@ class Login extends Component {
     this.setState({ [name]: value });
   };
 
+  validateInputFields = () => {
+    const { email, password } = this.state;
+    const isValidEmail = /^\S+@\S+\.\S+$/.test(email);
+    const isValidPassword = password.length > 0;
+    return isValidEmail && isValidPassword;
+  };
+
   handleSubmit = () => {
-    const { dispatch, history } = this.props;
-    dispatch(login(this.state));
-    history.push('/customers');
+    if (this.validateInputFields()) {
+      const { dispatch, history } = this.props;
+      dispatch(login(this.state));
+      history.push('/customers');
+    }
   };
 
   render() {
