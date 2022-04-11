@@ -1,0 +1,18 @@
+docker pull debian:stable-slim
+
+docker run -it debian:stable-slim -> cat /etc/*-release
+
+exit
+
+docker ps -l
+
+docker start eloquent_agnesi -> docker ps -a
+
+docker attach eloquent_agnesi -> cat /etc/debian_version
+
+exit
+
+docker rm eloquent_agnesi -> docker ps -a
+
+docker run -it --rm andrius/ascii-patrol -> ctrl + c
+
