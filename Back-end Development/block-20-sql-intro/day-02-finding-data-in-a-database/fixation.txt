@@ -1,0 +1,69 @@
+SELECT * from sakila.city;
+
+SELECT first_name, last_name from sakila.customer;
+
+SELECT * from sakila.rental;
+
+SELECT title, description, release_year from sakila.film;
+
+SELECT * from sakila.table_name;
+
+---
+
+SELECT CONCAT(title, ' ', release_year) AS 'Lançamento do Filme' FROM sakila.film;
+
+SELECT CONCAT(title, ' ', rating) AS 'Classificação' FROM sakila.film;
+
+SELECT CONCAT(address, ' ', district) AS 'Endereço' FROM sakila.address;
+
+---
+
+SELECT DISTINCT Nome, Idade from Escola.Estudantes;
+
+5 lines
+
+SELECT DISTINCT Nome from Escola.Estudantes;
+
+4 lines
+
+SELECT DISTINCT Idade from Escola.Estudantes;
+
+4 lines
+
+---
+
+SELECT COUNT(password) FROM sakila.staff; -> 1 password
+
+SELECT COUNT(staff_id) FROM sakila.staff; -> 2 employees
+
+SELECT COUNT(email) FROM sakila.staff; -> 2 emails
+
+---
+
+SELECT * FROM sakila.actor LIMIT 10 OFFSET 5;
+
+---
+
+select * from sakila.film;
+
+select title, release_year, rating from sakila.film;
+
+select count(*) from sakila.film; -> 1000 movies
+
+select count(distinct last_name) from sakila.actor; -> 121 unique surnames
+
+select * from sakila.actor
+order by last_name, first_name desc;
+
+select * from sakila.language limit 5 offset 1;
+
+select title, release_year, length, rating, replacement_cost from sakila.film
+order by length desc, replacement_cost asc
+limit 20;
+
+
+
+
+
+
+
