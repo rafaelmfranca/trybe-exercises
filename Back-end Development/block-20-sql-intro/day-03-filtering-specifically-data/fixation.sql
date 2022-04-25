@@ -192,3 +192,47 @@ ORDER BY
   title
 LIMIT
   500;
+
+--1
+SELECT
+  COUNT(*) AS Payments
+FROM
+  sakila.payment
+WHERE
+  DATE(payment_date) = '2005-05-25';
+
+--2
+SELECT
+  count(*) AS Payments
+FROM
+  sakila.payment
+WHERE
+  DATE(payment_date) BETWEEN '2005-07-01'
+  AND '2005-08-22';
+
+--3
+SELECT
+  DATE(rental_date) AS Data,
+  YEAR(rental_date) AS Year,
+  MONTH(rental_date) AS Month,
+  DAY(rental_date) AS Day,
+  HOUR(rental_date) AS Hour,
+  MINUTE(rental_date) AS Minute,
+  SECOND(rental_date) AS Second
+FROM
+  sakila.rental
+WHERE
+  rental_id = 10330;
+
+--4
+SELECT
+  *
+FROM
+  sakila.payment
+WHERE
+  DATE(payment_date) = '2005-07-28'
+  AND HOUR(payment_date) > 22
+ORDER BY
+  HOUR(payment_date),
+  MINUTE(payment_date),
+  SECOND(payment_date);
