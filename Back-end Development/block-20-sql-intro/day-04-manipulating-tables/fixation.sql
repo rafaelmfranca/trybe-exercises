@@ -87,3 +87,36 @@ SET
       WHEN length > 100 THEN 20
     END
   );
+
+--1
+DELETE FROM
+  sakila.film_actor
+WHERE
+  actor_id = 12;
+
+DELETE FROM
+  sakila.actor
+WHERE
+  first_name = 'karl';
+
+--2
+DELETE FROM
+  sakila.film_actor
+WHERE
+  actor_id IN (8, 103, 181);
+
+DELETE FROM
+  sakila.actor
+WHERE
+  first_name = 'matthew';
+
+--3
+DELETE FROM
+  sakila.film_text
+WHERE
+  description LIKE '%saga%';
+
+--4
+TRUNCATE sakila.film_actor;
+
+TRUNCATE sakila.film_category;
