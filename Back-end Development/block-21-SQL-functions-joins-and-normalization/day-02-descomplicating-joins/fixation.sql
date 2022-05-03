@@ -81,3 +81,22 @@ FROM
   sakila.actor AS a
   INNER JOIN sakila.film_actor AS fa ON a.actor_id = fa.actor_id
   INNER JOIN sakila.film AS f ON fa.film_id = f.film_id;
+
+--1
+SELECT
+  CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) AS employee,
+  CONCAT(m.FIRST_NAME, ' ', m.LAST_NAME) AS manager
+FROM
+  hr.employees AS e
+  INNER JOIN hr.employees AS m ON e.DEPARTMENT_ID <> m.DEPARTMENT_ID;
+
+--SELF JOIN
+--2
+SELECT
+  CONCAT(m.FIRST_NAME, ' ', m.LAST_NAME) AS manager,
+  COUNT(*) AS led_people_count
+FROM
+  hr.employees AS m
+  INNER JOIN hr.employees AS e ON m.EMPLOYEE_ID = e.MANAGER_ID
+GROUP BY
+  m.EMPLOYEE_ID;
