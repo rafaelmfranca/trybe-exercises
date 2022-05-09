@@ -17,6 +17,7 @@ function startGame() {
   const playAgain = readline.question(
     '\nWould you like to play again? (y/n): '
   );
+
   if (playAgain === 'y') startGame();
 }
 
