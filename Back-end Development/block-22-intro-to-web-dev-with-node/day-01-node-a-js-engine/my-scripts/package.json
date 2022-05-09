@@ -8,7 +8,8 @@
     "start": "tsc index.ts && node index.js",
     "imc": "tsc imc.ts && node imc.js",
     "averageSpeed": "tsc averageSpeed.ts && node averageSpeed.js",
-    "guessingGame": "tsc guessingGame.ts && node guessingGame.js"
+    "guessingGame": "tsc guessingGame.ts && node guessingGame.js",
+    "factorial": "tsc factorial.ts && node factorial.js"
   },
   "keywords": [],
   "author": "",
