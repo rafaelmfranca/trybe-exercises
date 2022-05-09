@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "imc": "tsc imc.ts && node imc.js",
-    "averageSpeed": "tsc averageSpeed.ts && node averageSpeed.js"
+    "averageSpeed": "tsc averageSpeed.ts && node averageSpeed.js",
+    "guessingGame": "tsc guessingGame.ts && node guessingGame.js"
   },
   "keywords": [],
   "author": "",
