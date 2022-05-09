@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node imc.js"
+    "imc": "node imc.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.31",
+    "@types/readline-sync": "^1.4.4",
+    "readline-sync": "^1.4.10",
     "typescript": "^4.6.4"
   }
 }
