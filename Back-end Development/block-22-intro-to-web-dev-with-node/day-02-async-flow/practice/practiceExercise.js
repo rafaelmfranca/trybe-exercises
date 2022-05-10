@@ -14,17 +14,16 @@ function doMath(a, b, c) {
   });
 }
 
-// Example with async/await (ES7)
-(async () => {
-  try {
-    const result = await doMath(1, 2, 3);
-    console.log(result);
-  } catch (error) {
-    console.log(error.message);
-  }
-})();
+function generateRandomNumber() {
+  return Math.round(Math.random() * 100 + 1);
+}
 
-// Example with then/catch (ES6)
-doMath(1, 2, 50)
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error.message));
+function main() {
+  const randomNumbers = Array.from({ length: 3 }, () => generateRandomNumber());
+
+  doMath(...randomNumbers)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error.message));
+}
+
+main();
