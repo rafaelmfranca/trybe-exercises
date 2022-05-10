@@ -18,12 +18,15 @@ function generateRandomNumber() {
   return Math.round(Math.random() * 100 + 1);
 }
 
-function main() {
+async function main() {
   const randomNumbers = Array.from({ length: 3 }, () => generateRandomNumber());
 
-  doMath(...randomNumbers)
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error.message));
+  try {
+    const result = await doMath(...randomNumbers);
+    console.log(result);
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 main();
