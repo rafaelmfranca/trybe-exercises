@@ -11,4 +11,12 @@ describe('positiveOrNegative.js', () => {
     expect(positiveOrNegative(-1)).to.equal('negative');
     expect(positiveOrNegative(-2)).to.equal('negative');
   });
+
+  it('should return error when param is not a number', () => {
+    try {
+      positiveOrNegative('1');
+    } catch (error) {
+      expect(error.message).to.equal('Expected a number');
+    }
+  });
 });
