@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const positiveOrNegative = require('..');
+const positiveOrNegative = require('../positiveOrNegative');
 
 describe('positiveOrNegative.js', () => {
   it('should return "positive" if the number is greater than 0', () => {
