@@ -15,8 +15,13 @@ function filterItemsByNameAndPrice(array, name, minPrice, maxPrice) {
   );
 }
 
+function findIndexById(array, id) {
+  return array.findIndex((item) => item.id === Number(id));
+}
+
 module.exports = {
   sortInAlphabeticalOrder,
   findItemById,
   filterItemsByNameAndPrice,
+  findIndexById,
 };
