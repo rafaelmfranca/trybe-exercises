@@ -6,14 +6,17 @@ function findItemById(array, id) {
   return array.find((item) => item.id === Number(id));
 }
 
-function filterItemsByNameAndMaxPrice(array, name, maxPrice) {
+function filterItemsByNameAndPrice(array, name, minPrice, maxPrice) {
   return array.filter(
-    (item) => item.name.includes(name) && item.price <= Number(maxPrice)
+    (item) =>
+      item.name.includes(name) &&
+      item.price >= minPrice &&
+      item.price <= Number(maxPrice)
   );
 }
 
 module.exports = {
   sortInAlphabeticalOrder,
   findItemById,
-  filterItemsByNameAndMaxPrice,
+  filterItemsByNameAndPrice,
 };

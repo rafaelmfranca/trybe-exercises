@@ -5,7 +5,7 @@ const { recipes, drinks } = require('./data');
 const {
   findItemById,
   sortInAlphabeticalOrder,
-  filterItemsByNameAndMaxPrice,
+  filterItemsByNameAndPrice,
 } = require('./utils');
 
 app.use(cors());
@@ -15,8 +15,13 @@ app.get('/drinks', (_, res) => {
 });
 
 app.get('/drinks/search', (req, res) => {
-  const { name, maxPrice } = req.query;
-  const filteredDrinks = filterItemsByNameAndMaxPrice(drinks, name, maxPrice);
+  const { name, minPrice, maxPrice } = req.query;
+  const filteredDrinks = filterItemsByNameAndPrice(
+    drinks,
+    name,
+    minPrice,
+    maxPrice
+  );
 
   return filteredDrinks.length > 0
     ? res.json(filteredDrinks)
@@ -37,8 +42,13 @@ app.get('/recipes', (_, res) => {
 });
 
 app.get('/recipes/search', (req, res) => {
-  const { name, maxPrice } = req.query;
-  const filteredRecipes = filterItemsByNameAndMaxPrice(recipes, name, maxPrice);
+  const { name, minPrice, maxPrice } = req.query;
+  const filteredRecipes = filterItemsByNameAndPrice(
+    recipes,
+    name,
+    minPrice,
+    maxPrice
+  );
 
   return filteredRecipes.length > 0
     ? res.json(filteredRecipes)
