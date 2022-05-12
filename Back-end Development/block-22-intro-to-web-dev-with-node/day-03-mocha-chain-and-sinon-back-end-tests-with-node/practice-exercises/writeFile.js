@@ -5,4 +5,8 @@ function writeFile(name, content) {
   return 'ok';
 }
 
-module.exports = writeFile;
+function readFile(name) {
+  return String(fs.readFileSync(name, 'utf8'));
+}
+
+module.exports = { writeFile, readFile };
