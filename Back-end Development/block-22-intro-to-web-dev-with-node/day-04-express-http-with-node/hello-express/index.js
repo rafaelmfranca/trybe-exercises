@@ -1,12 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const { recipes, drinks } = require('./data');
 const {
   findItemById,
   sortInAlphabeticalOrder,
   filterItemsByNameAndPrice,
-  updateItemById,
   findIndexById,
 } = require('./utils');
 
