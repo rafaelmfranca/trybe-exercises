@@ -14,6 +14,16 @@ function serialize(bookData: IBook) {
   };
 }
 
+export async function getById(bookId: string | number) {
+  const [book] = JSON.parse(
+    JSON.stringify(
+      await connection.execute(`SELECT title FROM books WHERE id = ${bookId}`)
+    )
+  );
+
+  return book.length ? book[0] : null;
+}
+
 export async function getByAuthorId(authorId: string | number) {
   const [books] = JSON.parse(
     JSON.stringify(
