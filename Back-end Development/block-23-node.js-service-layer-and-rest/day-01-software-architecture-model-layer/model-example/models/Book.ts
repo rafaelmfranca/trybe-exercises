@@ -1,7 +1,8 @@
+import { exists } from './Author';
 import { connection } from './connection';
 
 interface IBook {
-  id: number;
+  id?: number;
   title: string;
   author_id: number;
 }
@@ -12,6 +13,18 @@ function serialize(bookData: IBook) {
     title: bookData.title,
     authorId: bookData.author_id,
   };
+}
+
+export async function create({ title, author_id }: IBook) {
+  await connection.execute(
+    `INSERT INTO books (title, author_id) VALUES ('${title}', ${author_id})`
+  );
+}
+
+export async function isValidBook({ title, author_id }: IBook) {
+  if (!title || !author_id) return false;
+  if (title.length < 3 || !(await exists(author_id))) return false;
+  return true;
 }
 
 export async function getById(bookId: string | number) {

@@ -42,3 +42,13 @@ export async function getAll() {
   );
   return authors.map(serialize).map(getNewAuthor);
 }
+
+export async function exists(authorId: string | number) {
+  const [author] = JSON.parse(
+    JSON.stringify(
+      await connection.execute(`SELECT id FROM authors WHERE id = ${authorId}`)
+    )
+  );
+
+  return author.length ? true : false;
+}
