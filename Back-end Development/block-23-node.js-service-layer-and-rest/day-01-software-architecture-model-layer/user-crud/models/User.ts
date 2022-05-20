@@ -12,3 +12,11 @@ export async function create(user: IUserInput) {
   );
   return { id: row.insertId, ...user };
 }
+
+export async function getAll() {
+  const [rows] = JSON.parse(
+    JSON.stringify(await connection.execute('SELECT * FROM users'))
+  );
+
+  return rows;
+}
