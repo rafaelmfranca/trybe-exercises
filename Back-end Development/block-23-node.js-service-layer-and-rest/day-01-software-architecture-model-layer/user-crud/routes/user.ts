@@ -1,5 +1,5 @@
 import express from 'express';
-import { validateCreateUser } from '../middlewares';
+import { getUserById, validateCreateUser } from '../middlewares';
 import { create, getAll } from '../models/User';
 
 const router = express.Router();
@@ -17,5 +17,11 @@ router
 
     res.status(201).json(newUser);
   });
+
+router.route('/:id').get(getUserById, (req, res) => {
+  const { user } = req;
+
+  res.status(200).json(user);
+});
 
 export default router;

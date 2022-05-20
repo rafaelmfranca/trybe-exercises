@@ -20,3 +20,16 @@ export async function getAll() {
 
   return rows;
 }
+
+export async function getById(id: string) {
+  const [rows] = JSON.parse(
+    JSON.stringify(
+      await connection.execute(
+        'SELECT first_name, last_name, email, password FROM users WHERE id = ?',
+        [id]
+      )
+    )
+  );
+
+  return rows[0];
+}
