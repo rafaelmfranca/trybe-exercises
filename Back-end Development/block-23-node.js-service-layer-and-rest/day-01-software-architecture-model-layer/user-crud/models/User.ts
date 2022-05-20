@@ -13,6 +13,15 @@ export async function create(user: IUserInput) {
   return { id: row.insertId, ...user };
 }
 
+export async function update(id: string, user: IUserInput) {
+  await connection.execute(
+    'UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?',
+    [user.firstName, user.lastName, user.email, user.password, id]
+  );
+
+  return { id, ...user };
+}
+
 export async function getAll() {
   const [rows] = JSON.parse(
     JSON.stringify(await connection.execute('SELECT * FROM users'))
