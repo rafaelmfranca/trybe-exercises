@@ -9,7 +9,7 @@ function error(err: any, _req: Request, res: Response, _next: NextFunction) {
   }
 
   if (err.code) {
-    return res.status(err.status).json(err);
+    return res.status(err.status).json({ error: { ...err } });
   }
 
   return res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).send({

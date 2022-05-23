@@ -1,4 +1,4 @@
-import * as ZipCode from '../models/ZipCode';
+import { ViaCep, ZipCode } from '../models';
 import { IZipCodeBody } from '../types/common';
 import { STATUS_CODE } from './../utils/httpStatus';
 
@@ -18,13 +18,21 @@ export async function getZipCode(zipcode: string) {
   const response = await ZipCode.getByZipCode(normalizeZipCode(zipcode));
 
   if (!response) {
-    return {
-      error: {
-        status: STATUS_CODE.NOT_FOUND,
-        code: 'zipcode_not_found',
-        message: 'Zipcode not found',
-      },
-    };
+    const extZipCode = await ViaCep.getExternalZipCode(zipcode);
+
+    if (extZipCode.error) {
+      return extZipCode;
+    }
+
+    await ZipCode.addZipCode({
+      cep: normalizeZipCode(extZipCode.cep),
+      logradouro: extZipCode.logradouro,
+      bairro: extZipCode.bairro,
+      localidade: extZipCode.localidade,
+      uf: extZipCode.uf,
+    });
+
+    return extZipCode;
   }
 
   return {
