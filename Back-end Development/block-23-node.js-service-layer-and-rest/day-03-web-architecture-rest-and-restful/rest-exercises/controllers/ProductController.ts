@@ -5,17 +5,17 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(async (req, res) => {
+  .get(async (_req, res) => {
     const products = await ProductModel.getAll();
 
-    res.send(products);
+    res.status(200).json(products);
   })
   .post(async (req, res) => {
     const { name, brand } = req.body;
 
     const newProduct = await ProductModel.add(name, brand);
 
-    res.send(newProduct);
+    res.status(201).json(newProduct);
   });
 
 router
@@ -23,12 +23,12 @@ router
   .get(async (req, res) => {
     const product = await ProductModel.getById(Number(req.params.id));
 
-    res.send(product);
+    res.status(200).json(product);
   })
   .delete(async (req, res) => {
     const products = await ProductModel.exclude(Number(req.params.id));
 
-    res.send(products);
+    res.status(200).json(products);
   })
   .put(async (req, res) => {
     const { name, brand } = req.body;
@@ -39,7 +39,7 @@ router
       brand
     );
 
-    res.send(products);
+    res.status(200).json(products);
   });
 
 export default router;
