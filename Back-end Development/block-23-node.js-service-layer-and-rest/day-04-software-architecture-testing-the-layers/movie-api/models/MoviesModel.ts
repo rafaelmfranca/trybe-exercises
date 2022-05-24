@@ -14,4 +14,19 @@ async function create({ title, directedBy, releaseYear }: IMoviePayload) {
   return { id: result.insertId };
 }
 
-export default { create };
+async function getById(id: number) {
+  const [result] = JSON.parse(
+    JSON.stringify(
+      await connection.execute(
+        'SELECT title, directed_by, release_year FROM movies WHERE id = ?',
+        [id]
+      )
+    )
+  );
+
+  if (!result.length) return null;
+
+  return result[0];
+}
+
+export default { create, getById };
