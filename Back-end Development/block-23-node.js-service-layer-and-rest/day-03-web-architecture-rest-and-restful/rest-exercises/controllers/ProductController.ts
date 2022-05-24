@@ -13,8 +13,11 @@ router
   .post(async (req, res) => {
     const { name, brand } = req.body;
 
-    const newProduct = await ProductModel.add(name, brand);
+    if (!name || !brand) {
+      return res.status(400).json({ message: 'Missing name or brand' });
+    }
 
+    const newProduct = await ProductModel.add(name, brand);
     res.status(201).json(newProduct);
   });
 
@@ -23,23 +26,37 @@ router
   .get(async (req, res) => {
     const product = await ProductModel.getById(Number(req.params.id));
 
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
     res.status(200).json(product);
   })
   .delete(async (req, res) => {
-    const products = await ProductModel.exclude(Number(req.params.id));
+    const product = await ProductModel.getById(Number(req.params.id));
 
-    res.status(200).json(products);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    await ProductModel.exclude(Number(req.params.id));
+    res.status(200).json({ message: 'Product deleted' });
   })
   .put(async (req, res) => {
     const { name, brand } = req.body;
 
-    const products = await ProductModel.update(
-      Number(req.params.id),
-      name,
-      brand
-    );
+    if (!name || !brand) {
+      return res.status(400).json({ message: 'Missing name or brand' });
+    }
 
-    res.status(200).json(products);
+    const product = await ProductModel.getById(Number(req.params.id));
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    await ProductModel.update(Number(req.params.id), name, brand);
+    res.status(200).json({ name, brand });
   });
 
 export default router;
