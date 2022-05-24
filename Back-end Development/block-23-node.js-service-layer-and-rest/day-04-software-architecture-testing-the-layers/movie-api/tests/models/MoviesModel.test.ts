@@ -34,3 +34,47 @@ describe('Insert a new movie into BD', () => {
     });
   });
 });
+
+describe('Get movie from DB by ID', () => {
+  describe('when movie exists on DB', () => {
+    const movieId = 1;
+
+    before(() => {
+      const result = [
+        { title: 'Movie title', directed_by: 'John Doe', release_year: 1997 },
+      ];
+      sinon
+        .stub(connection, 'execute')
+        .resolves(JSON.parse(JSON.stringify([result])));
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    it('returns an object', async () => {
+      const response = await MoviesModel.getById(movieId);
+      expect(response).to.be.an('object');
+    });
+  });
+
+  describe('when movie not exists on DB', () => {
+    const movieId = 1;
+
+    before(() => {
+      const result = [[]];
+      sinon
+        .stub(connection, 'execute')
+        .resolves(JSON.parse(JSON.stringify(result)));
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    it('returns an object', async () => {
+      const response = await MoviesModel.getById(movieId);
+      expect(response).to.be.null;
+    });
+  });
+});
