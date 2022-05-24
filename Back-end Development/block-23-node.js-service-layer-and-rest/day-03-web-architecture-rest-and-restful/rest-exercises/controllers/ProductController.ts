@@ -3,42 +3,43 @@ import ProductModel from '../models/ProductModel';
 
 const router = express.Router();
 
-router.get('/list-products', async (req, res) => {
-  const products = await ProductModel.getAll();
+router
+  .route('/')
+  .get(async (req, res) => {
+    const products = await ProductModel.getAll();
 
-  res.send(products);
-});
+    res.send(products);
+  })
+  .post(async (req, res) => {
+    const { name, brand } = req.body;
 
-router.get('/get-by-id/:id', async (req, res) => {
-  const product = await ProductModel.getById(Number(req.params.id));
+    const newProduct = await ProductModel.add(name, brand);
 
-  res.send(product);
-});
+    res.send(newProduct);
+  });
 
-router.post('/add-product', async (req, res) => {
-  const { name, brand } = req.body;
+router
+  .route('/:id')
+  .get(async (req, res) => {
+    const product = await ProductModel.getById(Number(req.params.id));
 
-  const newProduct = await ProductModel.add(name, brand);
+    res.send(product);
+  })
+  .delete(async (req, res) => {
+    const products = await ProductModel.exclude(Number(req.params.id));
 
-  res.send(newProduct);
-});
+    res.send(products);
+  })
+  .put(async (req, res) => {
+    const { name, brand } = req.body;
 
-router.post('/delete-product/:id', async (req, res) => {
-  const products = await ProductModel.exclude(Number(req.params.id));
+    const products = await ProductModel.update(
+      Number(req.params.id),
+      name,
+      brand
+    );
 
-  res.send(products);
-});
-
-router.post('/update-product/:id', async (req, res) => {
-  const { name, brand } = req.body;
-
-  const products = await ProductModel.update(
-    Number(req.params.id),
-    name,
-    brand
-  );
-
-  res.send(products);
-});
+    res.send(products);
+  });
 
 export default router;
