@@ -19,6 +19,17 @@ async function create(req: Request, res: Response) {
   return res.status(201).send('Movie created');
 }
 
-router.route('/').post(create);
+async function getById(req: Request, res: Response) {
+  const movie = await MoviesService.getById(Number(req.params.id));
 
-export default { router, create };
+  if (movie.message) {
+    return res.status(404).send(movie.message);
+  }
+
+  return res.status(200).send(movie);
+}
+
+router.route('/').post(create);
+router.route('/:id').get(getById);
+
+export default { router, create, getById };
