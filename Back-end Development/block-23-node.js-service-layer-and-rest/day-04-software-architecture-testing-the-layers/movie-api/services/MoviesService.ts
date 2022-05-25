@@ -20,4 +20,15 @@ async function create({ title, directedBy, releaseYear }: IMoviePayload) {
   return id;
 }
 
-export default { create };
+async function getById(id: number) {
+  const response = await MoviesModel.getById(id);
+
+  if (!response)
+    return {
+      message: 'Movie not found',
+    };
+
+  return response;
+}
+
+export default { create, getById };
