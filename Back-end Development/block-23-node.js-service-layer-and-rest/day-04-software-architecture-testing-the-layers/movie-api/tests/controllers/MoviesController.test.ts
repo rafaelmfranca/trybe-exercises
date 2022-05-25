@@ -68,3 +68,69 @@ describe('When call /POST method on MoviesController ', () => {
     });
   });
 });
+
+describe('When call /GET method on MoviesController ', () => {
+  describe('when movie exists on DB', () => {
+    const movie = {
+      title: 'Movie title',
+      directed_by: 'John Doe',
+      release_year: 1997,
+    };
+
+    const response = {} as any;
+    const request = {} as any;
+
+    before(() => {
+      request.params = { id: '1' };
+
+      response.status = sinon.stub().returns(response);
+      response.send = sinon.stub().returns('');
+
+      sinon.stub(MoviesService, 'getById').resolves(movie);
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    it('response was called with 200 status code', async () => {
+      await MoviesController.getById(request, response);
+      expect(response.status.calledWith(200)).to.be.equal(true);
+    });
+
+    it('response was called with correct message', async () => {
+      await MoviesController.getById(request, response);
+      expect(response.send.calledWith(movie)).to.be.equal(true);
+    });
+  });
+
+  describe('when movie not exists on DB', () => {
+    const response = {} as any;
+    const request = {} as any;
+
+    before(() => {
+      request.params = { id: '1' };
+
+      response.status = sinon.stub().returns(response);
+      response.send = sinon.stub().returns('');
+
+      sinon.stub(MoviesService, 'getById').resolves({
+        message: 'Movie not found',
+      });
+    });
+
+    after(() => {
+      sinon.restore();
+    });
+
+    it('response was called with 201 status code', async () => {
+      await MoviesController.getById(request, response);
+      expect(response.status.calledWith(404)).to.be.equal(true);
+    });
+
+    it('response was called with correct message', async () => {
+      await MoviesController.getById(request, response);
+      expect(response.send.calledWith('Movie not found')).to.be.equal(true);
+    });
+  });
+});
