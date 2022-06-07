@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+app.use('/employees', require('./src/routes/employees'));
+
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
