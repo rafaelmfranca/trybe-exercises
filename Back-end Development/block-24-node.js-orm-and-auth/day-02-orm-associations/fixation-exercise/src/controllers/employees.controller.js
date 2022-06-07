@@ -10,4 +10,21 @@ async function getAll(_req, res, next) {
   }
 }
 
-module.exports = { getAll };
+async function getById(req, res, next) {
+  try {
+    const employee = await employeesService.getById(req.params.id);
+
+    if (!employee) {
+      return next({
+        status: StatusCodes.NOT_FOUND,
+        message: 'Employee not found',
+      });
+    }
+
+    return res.status(StatusCodes.OK).json(employee);
+  } catch (err) {
+    return next(err);
+  }
+}
+
+module.exports = { getAll, getById };

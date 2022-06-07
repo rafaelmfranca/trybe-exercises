@@ -5,4 +5,6 @@ const employeesRouter = express.Router();
 
 employeesRouter.route('/').get(employeesController.getAll);
 
+employeesRouter.route('/:id').get(employeesController.getById);
+
 module.exports = employeesRouter;
