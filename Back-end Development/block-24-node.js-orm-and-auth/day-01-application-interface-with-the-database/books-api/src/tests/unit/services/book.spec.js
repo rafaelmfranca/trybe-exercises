@@ -113,4 +113,47 @@ describe('✅ Books service', () => {
       expect(books).to.includes(bookMock);
     });
   });
+
+  describe('➡️ update() func', () => {
+    const update = sinon.stub(Book, 'update');
+    let isUpdated;
+
+    describe('when there is no book registered', async () => {
+      before(async () => {
+        update.resolves([false]);
+        isUpdated = await bookService.update(1, bookMock);
+      });
+
+      after(() => {
+        update.reset();
+      });
+
+      it('should call Book.update()', () => {
+        expect(update.calledOnce).to.be.true;
+      });
+
+      it('should return an array with boolean false', () => {
+        expect(isUpdated).to.be.an('array').that.is.deep.equal([false]);
+      });
+    });
+
+    describe('when there is a book with specified id', async () => {
+      before(async () => {
+        update.resolves([true]);
+        isUpdated = await bookService.update(1, bookMock);
+      });
+
+      after(() => {
+        update.restore();
+      });
+
+      it('should call Book.update()', () => {
+        expect(update.calledOnce).to.be.true;
+      });
+
+      it('should return an array with boolean true', () => {
+        expect(isUpdated).to.be.an('array').to.be.deep.equal([true]);
+      });
+    });
+  });
 });
