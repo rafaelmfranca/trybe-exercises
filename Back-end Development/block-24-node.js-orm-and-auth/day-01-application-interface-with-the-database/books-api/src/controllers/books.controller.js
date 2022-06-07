@@ -10,4 +10,20 @@ async function getAll(_req, res, next) {
   }
 }
 
-module.exports = { getAll };
+async function getById(req, res, next) {
+  try {
+    const book = await booksService.getById(req.params.id);
+
+    if (!book) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        message: 'Book not found',
+      });
+    }
+
+    res.status(StatusCodes.OK).json(book);
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { getAll, getById };
