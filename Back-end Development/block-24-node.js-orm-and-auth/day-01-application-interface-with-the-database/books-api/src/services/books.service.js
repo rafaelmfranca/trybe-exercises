@@ -16,4 +16,8 @@ function create({ title, author, pageQuantity }) {
   });
 }
 
-module.exports = { getAll, getById, create };
+function update(id, { title, author, pageQuantity }) {
+  return Book.update({ title, author, pageQuantity }, { where: { id } });
+}
+
+module.exports = { getAll, getById, create, update };

@@ -35,4 +35,20 @@ async function create(req, res, next) {
   }
 }
 
-module.exports = { getAll, getById, create };
+async function update(req, res, next) {
+  try {
+    const [book] = await booksService.update(req.params.id, req.body);
+
+    if (!book) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        message: 'Book not found',
+      });
+    }
+
+    res.status(StatusCodes.OK).json({ message: 'Book updated' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { getAll, getById, create, update };
