@@ -1,9 +1,15 @@
 const { StatusCodes } = require('http-status-codes');
 const booksService = require('../services/books.service');
 
-async function getAll(_req, res, next) {
+async function getAll(req, res, next) {
   try {
-    const books = await booksService.getAll();
+    const { author } = req.query;
+
+    let books;
+
+    if (author) books = await booksService.getByAuthor(author);
+    else books = await booksService.getAll();
+
     res.status(StatusCodes.OK).json(books);
   } catch (err) {
     next(err);

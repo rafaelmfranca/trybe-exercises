@@ -24,4 +24,8 @@ function remove(id) {
   return Book.destroy({ where: { id } });
 }
 
-module.exports = { getAll, getById, create, update, remove };
+function getByAuthor(author) {
+  return Book.findAll({ where: { author }, order: [['title', 'ASC']] });
+}
+
+module.exports = { getAll, getById, create, update, remove, getByAuthor };
