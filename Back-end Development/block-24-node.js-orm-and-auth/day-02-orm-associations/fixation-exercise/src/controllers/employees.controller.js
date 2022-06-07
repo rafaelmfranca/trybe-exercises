@@ -12,7 +12,12 @@ async function getAll(_req, res, next) {
 
 async function getById(req, res, next) {
   try {
-    const employee = await employeesService.getById(req.params.id);
+    const { includeAddresses } = req.query;
+
+    const employee = await employeesService.getById(
+      req.params.id,
+      includeAddresses
+    );
 
     if (!employee) {
       return next({

@@ -4,14 +4,14 @@ function getAll() {
   return Employee.findAll({ include: { model: Address, as: 'addresses' } });
 }
 
-function getById(id) {
-  return Employee.findByPk(id, {
-    include: {
-      model: Address,
-      as: 'addresses',
-      attributes: { exclude: ['number'] },
-    },
-  });
+function getById(id, includeAddresses) {
+  if (includeAddresses) {
+    return Employee.findByPk(id, {
+      include: { model: Address, as: 'addresses' },
+    });
+  }
+
+  return Employee.findByPk(id);
 }
 
 module.exports = { getAll, getById };
