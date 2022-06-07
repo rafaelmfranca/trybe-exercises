@@ -20,4 +20,8 @@ function update(id, { title, author, pageQuantity }) {
   return Book.update({ title, author, pageQuantity }, { where: { id } });
 }
 
-module.exports = { getAll, getById, create, update };
+function remove(id) {
+  return Book.destroy({ where: { id } });
+}
+
+module.exports = { getAll, getById, create, update, remove };

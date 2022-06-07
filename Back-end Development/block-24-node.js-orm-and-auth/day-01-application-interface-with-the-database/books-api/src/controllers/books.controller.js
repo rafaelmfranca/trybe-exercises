@@ -51,4 +51,20 @@ async function update(req, res, next) {
   }
 }
 
-module.exports = { getAll, getById, create, update };
+async function remove(req, res, next) {
+  try {
+    const book = await booksService.remove(req.params.id);
+
+    if (!book) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: 'Book not found' });
+    }
+
+    return res.status(StatusCodes.OK).json({ message: 'Book removed' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { getAll, getById, create, update, remove };
