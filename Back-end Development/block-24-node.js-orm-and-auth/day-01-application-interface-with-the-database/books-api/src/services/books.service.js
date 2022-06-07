@@ -1,23 +1,27 @@
 const { Book } = require('../models');
 
 function getAll() {
-  return Book.findAll();
+  return Book.findAll({ order: [['title', 'ASC']] });
 }
 
 function getById(id) {
   return Book.findByPk(id);
 }
 
-function create({ title, author, pageQuantity }) {
+function create({ title, author, pageQuantity, publisher }) {
   return Book.create({
     title,
     author,
     pageQuantity,
+    publisher,
   });
 }
 
-function update(id, { title, author, pageQuantity }) {
-  return Book.update({ title, author, pageQuantity }, { where: { id } });
+function update(id, { title, author, pageQuantity, publisher }) {
+  return Book.update(
+    { title, author, pageQuantity, publisher },
+    { where: { id } }
+  );
 }
 
 function remove(id) {
