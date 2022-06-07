@@ -26,4 +26,13 @@ async function getById(req, res, next) {
   }
 }
 
-module.exports = { getAll, getById };
+async function create(req, res, next) {
+  try {
+    const book = await booksService.create(req.body);
+    res.status(StatusCodes.CREATED).json(book);
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { getAll, getById, create };

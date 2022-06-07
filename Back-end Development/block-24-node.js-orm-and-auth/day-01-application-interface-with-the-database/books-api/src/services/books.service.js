@@ -8,4 +8,12 @@ function getById(id) {
   return Book.findByPk(id);
 }
 
-module.exports = { getAll, getById };
+function create({ title, author, pageQuantity }) {
+  return Book.create({
+    title,
+    author,
+    pageQuantity,
+  });
+}
+
+module.exports = { getAll, getById, create };
