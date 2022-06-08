@@ -1,3 +1,4 @@
 import errorMiddleware from './error';
+import validateSignIn from './validateSignIn';
 
-export { errorMiddleware };
+export { errorMiddleware, validateSignIn };
