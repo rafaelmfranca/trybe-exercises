@@ -18,4 +18,20 @@ module.exports = {
       return next(error);
     }
   },
+  create: async (req, res, next) => {
+    try {
+      const response = await patientsService.create(req.body);
+
+      if (!response) {
+        return next({
+          status: StatusCodes.NOT_FOUND,
+          message: 'Plan not found',
+        });
+      }
+
+      return res.status(StatusCodes.CREATED).json(response);
+    } catch (error) {
+      return next(error);
+    }
+  },
 };

@@ -13,4 +13,11 @@ module.exports = {
       },
     });
   },
+  create: async ({ fullName, planId }) => {
+    const plan = await Plans.findByPk(planId);
+
+    if (!plan) return false;
+
+    return Patients.create({ fullName, planId });
+  },
 };
