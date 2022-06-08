@@ -10,4 +10,12 @@ module.exports = {
       return next(error);
     }
   },
+  getAllWithSurgeries: async (_req, res, next) => {
+    try {
+      const patients = await patientsService.getAllWithSurgeries();
+      return res.status(StatusCodes.OK).json(patients);
+    } catch (error) {
+      return next(error);
+    }
+  },
 };
