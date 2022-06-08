@@ -9,6 +9,7 @@ module.exports = {
       include: {
         model: Surgeries,
         as: 'surgeries',
+        attributes: { exclude: ['doctor'] },
         through: { attributes: [] },
       },
     });
