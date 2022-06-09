@@ -1,3 +1,4 @@
 import authController from './auth.controller';
+import postsController from './posts.controller';
 
-export { authController };
+export { authController, postsController };
