@@ -25,4 +25,10 @@ export default class BookController {
     const book = await this.service.create({ title, price, author, isbn });
     res.status(StatusCodes.CREATED).json(book);
   };
+
+  remove = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await this.service.remove(Number(id));
+    res.status(StatusCodes.NO_CONTENT).end();
+  };
 }

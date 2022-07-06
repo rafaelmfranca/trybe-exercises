@@ -26,4 +26,14 @@ export default class BookService {
   async create(book: IBook) {
     return await this.model.create(book);
   }
+
+  async remove(id: number) {
+    const isBookRemoved = await this.model.delete(id);
+
+    if (!isBookRemoved) {
+      throw { name: 'NotFoundError', message: 'Book not found' };
+    }
+
+    return;
+  }
 }

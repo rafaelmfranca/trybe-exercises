@@ -10,6 +10,9 @@ bookRouter
   .get(bookController.getAll)
   .post(bookMiddleware, bookController.create);
 
-bookRouter.route('/books/:id').get(bookController.getById);
+bookRouter
+  .route('/books/:id')
+  .get(bookController.getById)
+  .delete(bookController.remove);
 
 export default bookRouter;

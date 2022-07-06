@@ -28,4 +28,12 @@ export default class BookModel {
     );
     return { id: row.insertId, title, price, author, isbn };
   }
+
+  async delete(id: number) {
+    const [row] = await this.connection.execute<ResultSetHeader>(
+      'DELETE FROM books WHERE id = ?',
+      [id]
+    );
+    return row.affectedRows ? true : false;
+  }
 }
