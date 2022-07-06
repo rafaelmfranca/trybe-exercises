@@ -1,4 +1,5 @@
 import connection from '../db/connection';
+import IBook from '../interfaces/book.interface';
 import BookModel from '../models/book.model';
 
 export default class BookService {
@@ -10,5 +11,19 @@ export default class BookService {
 
   async getAll() {
     return await this.model.getAll();
+  }
+
+  async getById(id: number) {
+    const book = await this.model.getById(id);
+
+    if (!book.length) {
+      throw { name: 'NotFoundError', message: 'Book not found' };
+    }
+
+    return book;
+  }
+
+  async create(book: IBook) {
+    return await this.model.create(book);
   }
 }

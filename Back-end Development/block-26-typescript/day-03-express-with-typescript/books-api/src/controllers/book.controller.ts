@@ -13,4 +13,16 @@ export default class BookController {
     const books = await this.service.getAll();
     res.status(StatusCodes.OK).json(books);
   };
+
+  getById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const [book] = await this.service.getById(Number(id));
+    res.status(StatusCodes.OK).json(book);
+  };
+
+  create = async (req: Request, res: Response) => {
+    const { title, price, author, isbn } = req.body;
+    const book = await this.service.create({ title, price, author, isbn });
+    res.status(StatusCodes.CREATED).json(book);
+  };
 }

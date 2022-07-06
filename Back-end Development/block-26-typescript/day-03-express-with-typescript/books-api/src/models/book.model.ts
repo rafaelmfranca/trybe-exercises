@@ -13,6 +13,14 @@ export default class BookModel {
     return rows as IBook[];
   }
 
+  async getById(id: number) {
+    const [row] = await this.connection.execute(
+      'SELECT * FROM books WHERE id = ?',
+      [id]
+    );
+    return row as IBook[];
+  }
+
   async create({ title, price, author, isbn }: IBook) {
     const [row] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO books (title, price, author, isbn) VALUES (?, ?, ?, ?)',
