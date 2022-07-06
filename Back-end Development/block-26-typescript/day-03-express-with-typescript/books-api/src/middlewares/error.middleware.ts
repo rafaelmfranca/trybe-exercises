@@ -1,8 +1,12 @@
 import { NextFunction as NF, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-export default (err: Error, _req: Request, res: Response, _next: NF) => {
-  const { name, message, details } = err as any;
+interface ICustomError extends Error {
+  details: [{ message: string }];
+}
+
+export default (err: ICustomError, _req: Request, res: Response, _next: NF) => {
+  const { name, message, details } = err;
 
   switch (name) {
     case 'ValidationError':
