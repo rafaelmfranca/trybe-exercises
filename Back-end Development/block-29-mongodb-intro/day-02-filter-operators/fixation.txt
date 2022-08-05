@@ -22,3 +22,8 @@
 
 5) db.restaurants.countDocuments({ $and: [{ $or: [{ rating: { $gt: 6, $lt: 10 } }] }, { $or: [{ borough: "Brooklyn" }, { cuisine: { $ne: "Delicatessen" } }] }] });
 
+// Método sort()
+
+1) db.restaurants.find({}, { name: 1, _id: 0 }).sort({ name: 1 });
+
+2) db.restaurants.find({}, { name: 1, rating: 1, _id: 0 }).sort({ rating: -1 });
