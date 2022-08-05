@@ -27,3 +27,9 @@
 1) db.restaurants.find({}, { name: 1, _id: 0 }).sort({ name: 1 });
 
 2) db.restaurants.find({}, { name: 1, rating: 1, _id: 0 }).sort({ rating: -1 });
+
+// Removendo documentos
+
+1) db.restaurants.deleteOne({ cuisine: "Ice Cream, Gelato, Yogurt, Ices" });
+
+2) db.restaurants.deleteMany({ cuisine: "American" });
