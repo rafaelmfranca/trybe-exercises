@@ -23,4 +23,8 @@ export default class FrameService implements IService<TFrame> {
     if (!frame) throw new Error(ErrorTypes.EntityNotFound);
     return frame;
   }
+
+  public async read() {
+    return this._frame.read();
+  }
 }

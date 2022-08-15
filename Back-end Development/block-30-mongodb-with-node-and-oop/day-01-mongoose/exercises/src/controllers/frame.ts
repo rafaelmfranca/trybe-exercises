@@ -15,8 +15,13 @@ export default class FrameController {
     return res.status(201).json(result);
   };
 
-  public readOne = async (req: CustomRequest, res: Response<TFrame>) => {
+  public readOne = async (req: Request, res: Response<TFrame>) => {
     const frame = await this._service.readOne(req.params.id);
     return res.status(200).json(frame);
+  };
+
+  public read = async (_req: Request, res: Response<TFrame[]>) => {
+    const frames = await this._service.read();
+    return res.status(200).json(frames);
   };
 }

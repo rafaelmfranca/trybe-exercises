@@ -9,7 +9,7 @@ const frameModel = new FrameModel();
 const frameService = new FrameService(frameModel);
 const frameController = new FrameController(frameService);
 
-frameRouter.route('/').post(frameController.create);
+frameRouter.route('/').post(frameController.create).get(frameController.read);
 frameRouter.route('/:id').get(frameController.readOne);
 
 export default frameRouter;
