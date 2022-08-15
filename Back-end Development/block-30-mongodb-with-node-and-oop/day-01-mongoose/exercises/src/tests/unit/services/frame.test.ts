@@ -12,6 +12,7 @@ describe('✅ FrameService', () => {
 
   before(() => {
     sinon.stub(frameModel, 'create').resolves(frameMockWithId);
+    sinon.stub(frameModel, 'read').onCall(0).resolves([frameMockWithId]).onCall(1).resolves([]);
     sinon.stub(frameModel, 'readOne').onCall(0).resolves(frameMockWithId).onCall(1).resolves(null);
   });
 
@@ -46,6 +47,18 @@ describe('✅ FrameService', () => {
       } catch (error: any) {
         expect(error.message).to.be.eq(ErrorTypes.EntityNotFound);
       }
+    });
+  });
+
+  describe('searching all frames', () => {
+    it('should return an array of frames', async () => {
+      const frames = await frameService.read();
+      expect(frames).to.be.deep.equal([frameMockWithId]);
+    });
+
+    it('should return an empty array when there is no documents in the db', async () => {
+      const frames = await frameService.read();
+      expect(frames).to.be.deep.equal([]);
     });
   });
 });

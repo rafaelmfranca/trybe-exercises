@@ -17,6 +17,7 @@ describe('✅ FrameController', () => {
   before(() => {
     sinon.stub(frameService, 'create').resolves(frameMock);
     sinon.stub(frameService, 'readOne').resolves(frameMock);
+    sinon.stub(frameService, 'read').resolves([frameMock]);
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
@@ -45,6 +46,15 @@ describe('✅ FrameController', () => {
 
       expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
       expect((res.json as sinon.SinonStub).calledWith(frameMock)).to.be.true;
+    });
+  });
+
+  describe('searching all frames', () => {
+    it('should return an array of frames', async () => {
+      await frameController.read(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith([frameMock])).to.be.true;
     });
   });
 });
