@@ -2,9 +2,9 @@
   "name": "guia-mongodb-com-nodejs-e-poo",
   "version": "1.0.0",
   "description": "Repositório destinado ao conteúdo e exercícios do Bloco 30: MongoDB com Node.js e POO",
-  "main": "index.js",
+  "main": "src/api/server.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test:dev": "mocha -r ts-node/register src/tests/unit/**/*.test.ts --exit -t 60000",
     "test:coverage": "nyc npm run test:dev"
