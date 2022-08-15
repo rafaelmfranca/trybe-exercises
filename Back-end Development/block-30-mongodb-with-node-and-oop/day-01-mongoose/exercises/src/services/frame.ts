@@ -27,4 +27,10 @@ export default class FrameService implements IService<TFrame> {
   public async read() {
     return this._frame.read();
   }
+
+  public async destroy(_id: string) {
+    const frame = await this._frame.destroy(_id);
+    if (!frame) throw new Error(ErrorTypes.EntityNotFound);
+    return frame;
+  }
 }
