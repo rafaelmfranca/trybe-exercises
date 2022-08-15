@@ -12,8 +12,24 @@ describe('✅ FrameService', () => {
 
   before(() => {
     sinon.stub(frameModel, 'create').resolves(frameMockWithId);
-    sinon.stub(frameModel, 'read').onCall(0).resolves([frameMockWithId]).onCall(1).resolves([]);
-    sinon.stub(frameModel, 'readOne').onCall(0).resolves(frameMockWithId).onCall(1).resolves(null);
+    sinon
+      .stub(frameModel, 'read')
+      .onCall(0)
+      .resolves([frameMockWithId])
+      .onCall(1)
+      .resolves([]);
+    sinon
+      .stub(frameModel, 'readOne')
+      .onCall(0)
+      .resolves(frameMockWithId)
+      .onCall(1)
+      .resolves(null);
+    sinon
+      .stub(frameModel, 'destroy')
+      .onCall(0)
+      .resolves(frameMockWithId)
+      .onCall(1)
+      .resolves(null);
   });
 
   after(() => {
@@ -59,6 +75,21 @@ describe('✅ FrameService', () => {
     it('should return an empty array when there is no documents in the db', async () => {
       const frames = await frameService.read();
       expect(frames).to.be.deep.equal([]);
+    });
+  });
+
+  describe('deleting a frame', () => {
+    it('successfully deleted', async () => {
+      const frame = await frameService.destroy(frameMockWithId._id);
+      expect(frame).to.be.deep.equal(frameMockWithId);
+    });
+
+    it('_id not found', async () => {
+      try {
+        await frameService.destroy('123ERRADO');
+      } catch (error: any) {
+        expect(error.message).to.be.eq(ErrorTypes.EntityNotFound);
+      }
     });
   });
 });
